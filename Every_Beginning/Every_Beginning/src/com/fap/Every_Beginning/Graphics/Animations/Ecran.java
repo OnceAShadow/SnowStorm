@@ -1,13 +1,12 @@
-/*
-package com.fap.Gigueliou.Graphique;
+package com.fap.Every_Beginning.Graphics.Animations;
 
 import java.util.Random;
-import com.fap.Gigueliou.Entite.Creature.Creature;
-import com.fap.Gigueliou.Entite.Creature.Monstre.FantomeFeu;
-import com.fap.Gigueliou.Entite.Creature.Monstre.FantomeFutee;
-import com.fap.Gigueliou.Entite.Creature.Monstre.FantomeSuiveur;
-import com.fap.Gigueliou.Entite.Projectile.Projectile;
-import com.fap.Gigueliou.Niveau.Tuile.Tuile;
+//import com.fap.Every_Beginning.Graphics.Animations.Entite.Creature.Creature;
+//import com.fap.Gigueliou.Entite.Creature.Monstre.FantomeFeu;
+//import com.fap.Gigueliou.Entite.Creature.Monstre.FantomeFutee;
+//import com.fap.Gigueliou.Entite.Creature.Monstre.FantomeSuiveur;
+//import com.fap.Every_Beginning.Graphics.Projectiles.Projectile;
+//import com.fap.Every_Beginning.Graphics.Niveau.Tuile.Tuile;
 
 public class Ecran {
 	public int LargeurEcran, HauteurEcran;
@@ -186,7 +185,6 @@ public class Ecran {
 	public void DefinirDecallage(int xDecallage, int yDecallage) {
 		this.xDecallage = xDecallage;
 		this.yDecallage = yDecallage;
-		
 	}
 
 	public void DessinerRectangle(int xPosition, int yPosition, int LargeurDebug, int HauteurDebug, int Couleur, boolean Fixee) {
@@ -212,4 +210,3 @@ public class Ecran {
 		 }	
 	}
 }
-*/

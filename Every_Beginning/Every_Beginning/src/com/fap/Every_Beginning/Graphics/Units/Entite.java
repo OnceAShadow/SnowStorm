@@ -1,4 +1,4 @@
-package com.fap.Gigueliou.Entite;
+package com.fap.Every_Beginning.Entite;
 
 import java.util.Random;
 
@@ -22,11 +22,9 @@ public class Entite {
 		this.xActuelle = xPosition;
 		this.yActuelle = yPosition;
 		this.spriteEntite = Sprite;
-		
 	}
 	
-	public void TickEntite(){
-		
+	public void TickEntite() {
 	}
 	
 	public void RenduEntite(Ecran Ecran) {
@@ -48,8 +46,7 @@ public class Entite {
 	public double SaisirYActuelle() {
 		return yActuelle;
 	}
-	
-	
+
 	public boolean EstRetiree() {
 		return EstRetiree;
 	}
@@ -58,5 +55,4 @@ public class Entite {
 		this.niveau = Niveau;
 			
 	}
-	
 }

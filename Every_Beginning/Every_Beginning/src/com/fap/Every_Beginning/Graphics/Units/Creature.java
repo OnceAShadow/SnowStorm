@@ -1,12 +1,11 @@
-package com.fap.Gigueliou.Entite.Creature;
+package com.fap.Every_Beginning.Entite.Creature;
 
-
-import com.fap.Gigueliou.Entite.Entite;
-import com.fap.Gigueliou.Entite.Projectile.Projectile;
-import com.fap.Gigueliou.Entite.Projectile.ProjectileGuerrier;
+import com.fap.Every_Beginning.Graphics.Units.Entite;
+import com.fap.Every_Beginning.Graphics.Projectiles.Projectile;
+import com.fap.Every_Beginning.Entite.Projectile.ProjectileGuerrier;
 import com.fap.Gigueliou.Graphique.Ecran;
 
-public abstract class Creature extends Entite{
+public abstract class Creature extends Entite {
 	
 	protected boolean EnTrainBouger = false;
 	

@@ -13,8 +13,7 @@ public class Particule extends Entite{
 	
 	protected double xAbsolu, yAbsolu, zAbsolu; 
 	protected double xActuelleDouble, yActuelleDouble, zActuelleDouble;
-	
-	
+
 	public Particule(int xPosition, int yPosition, int DureeDeVie){
 		this.xActuelle = xPosition;
 		this.yActuelle = yPosition;

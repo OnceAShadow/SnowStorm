@@ -95,9 +95,7 @@ public class Game extends Canvas implements Runnable {
 		graphics.fillRect(0, 0, WidthFrame, HeightFrame);
 
 		graphics.drawImage(ImageInFrame, 0, 0, WidthFrame, HeightFrame, null);
-
 		graphics.dispose();
-
 		BufferStrategy.show();
 	}
 	

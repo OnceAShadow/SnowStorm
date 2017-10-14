@@ -1,4 +1,4 @@
-*/
+/*
 package com.fap.Gigueliou.Entite.GenerateurEntite;
 
 import com.fap.Gigueliou.Entite.Entite;

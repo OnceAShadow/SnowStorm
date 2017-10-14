@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class ScreenDisplay {
 
-
     public int LargeurEcran, HauteurEcran;
     public int xDecallage, yDecallage;
     //    public int[] PixelsEcran;
