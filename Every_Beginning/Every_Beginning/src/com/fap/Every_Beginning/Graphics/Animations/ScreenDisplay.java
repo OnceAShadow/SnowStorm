@@ -6,7 +6,7 @@ public class ScreenDisplay {
 
     public int LargeurEcran, HauteurEcran;
     public int xDecallage, yDecallage;
-    //    public int[] PixelsEcran;
+    public int[] PixelsEcran;
 //    public int LargeurNiveau = 8;
 //    public int HauteurNiveau = 8;
 //    public int QuantiteTuilesNiveau = LargeurNiveau * HauteurNiveau;
@@ -29,9 +29,9 @@ public class ScreenDisplay {
         PixelsEcran = new int[LargeurEcran * HauteurEcran];
 
 
-        for (int i = 0; i < QuantiteTuilesNiveau; i++) {
+   /*     for (int i = 0; i < QuantiteTuilesNiveau; i++) {
             Tuiles[i] = Aleatoire.nextInt(0xffffff);
-        }
+        }*/
     }
 
     public void Liberer() {
@@ -41,6 +41,7 @@ public class ScreenDisplay {
     }
 
     public void RenduEcran(int xDecallage, int yDecallage) {
+  
     }
 
     public void RenduSpriteSheet(int xPosition, int yPosition, SpriteSheet SpriteSheet, boolean Fixee) {

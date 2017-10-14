@@ -1,15 +1,15 @@
-/*
-package com.fap.Gigueliou.Graphique;
+
+package com.fap.Every_Beginning.Graphics.Animations;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class SpriteSheet {
-	private String CheminDAcces;
+	private String Path;
 
 	public final int DIMENSIONSPRITESHEET;
-	public final int LARGEUR_SPRITE, HAUTEUR_SPRITE;
+	public final int WIDTH_SPRITE, HEIGHT_SPRITE;
 	private int LargeurSpriteSheet, HauteurSpriteSheet;
 	public int[] PixelsSpriteSheet;
 	
@@ -48,8 +48,8 @@ public class SpriteSheet {
 		if (LargeurSpriteSheet == HauteurSpriteSheet) DIMENSIONSPRITESHEET = LargeurSpriteSheet;
 		else DIMENSIONSPRITESHEET = -1;
 		
-		LARGEUR_SPRITE = Largeur;
-		HAUTEUR_SPRITE = Hauteur;
+		WIDTH_SPRITE = Largeur;
+		HEIGHT_SPRITE = Hauteur;
 		PixelsSpriteSheet = new int[Largeur * Hauteur];
 		
 		for (int y0 = 0; y0 < Hauteur; y0++) {
@@ -71,7 +71,7 @@ public class SpriteSheet {
 				for (int y1 = 0; y1 < DimensionSprite; y1++) {
 					for (int x1 = 0; x1 < DimensionSprite; x1++) {
 			 
-						PixelsSprite[x1 + y1 * DimensionSprite] = PixelsSpriteSheet[(x1 + xAbsolu * DimensionSprite) + (y1 + yAbsolu * DimensionSprite) * LARGEUR_SPRITE];
+						PixelsSprite[x1 + y1 * DimensionSprite] = PixelsSpriteSheet[(x1 + xAbsolu * DimensionSprite) + (y1 + yAbsolu * DimensionSprite) * WIDTH_SPRITE];
 											
 					}
 				}	 
@@ -80,13 +80,26 @@ public class SpriteSheet {
 			}
 		}	
 	}
+<<<<<<< HEAD
 
+=======
+	
+	public SpriteSheet(String CheminDAcces, int DimensionSpriteSheet) {
+		this.CheminDAcces = CheminDAcces;
+		DIMENSIONSPRITESHEET = DimensionSpriteSheet;
+		WIDTH_SPRITE = DimensionSpriteSheet;
+		HEIGHT_SPRITE = DimensionSpriteSheet;
+		PixelsSpriteSheet = new int[DIMENSIONSPRITESHEET * DIMENSIONSPRITESHEET];
+		ChargementSpriteSheet();
+	}
+	
+>>>>>>> spritesheet 1
 	public SpriteSheet(String CheminDAcces, int LargeurSpriteSheet, int HauteurSpriteSheet) {
 		this.CheminDAcces = CheminDAcces;
 		DIMENSIONSPRITESHEET = - 1;
-		LARGEUR_SPRITE = LargeurSpriteSheet;
-		HAUTEUR_SPRITE = HauteurSpriteSheet;
-		PixelsSpriteSheet = new int[LARGEUR_SPRITE * HAUTEUR_SPRITE];
+		WIDTH_SPRITE = LargeurSpriteSheet;
+		HEIGHT_SPRITE = HauteurSpriteSheet;
+		PixelsSpriteSheet = new int[WIDTH_SPRITE * HEIGHT_SPRITE];
 		ChargementSpriteSheet();
 	}
 
