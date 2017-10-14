@@ -1,4 +1,4 @@
-package com.fap.Every_Beginning;
+package com.fap.Every_Beginning.Core;
 
 import java.awt.Canvas;
 import java.awt.Color;

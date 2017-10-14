@@ -1,7 +1,7 @@
+/*
 package com.fap.Gigueliou.Graphique;
 
 import java.util.Random;
-
 import com.fap.Gigueliou.Entite.Creature.Creature;
 import com.fap.Gigueliou.Entite.Creature.Monstre.FantomeFeu;
 import com.fap.Gigueliou.Entite.Creature.Monstre.FantomeFutee;
@@ -10,11 +10,8 @@ import com.fap.Gigueliou.Entite.Projectile.Projectile;
 import com.fap.Gigueliou.Niveau.Tuile.Tuile;
 
 public class Ecran {
-	
-	
 	public int LargeurEcran, HauteurEcran;
 	public int[] PixelsEcran;
-	
 	public int LargeurNiveau = 8;
 	public int HauteurNiveau = 8;
 	public int QuantiteTuilesNiveau = LargeurNiveau * HauteurNiveau;
@@ -28,12 +25,7 @@ public class Ecran {
 	private final int ALPHA_COULEUR2 = 0xff7f007f;
 	
 	public int[] Tuiles = new int[LargeurNiveau * HauteurNiveau];
-	
-	
 	private Random Aleatoire = new Random();
-	
-	
-	
 	
 	public Ecran(int LargeurEcran, int HauteurEcran) {
 		this.LargeurEcran = LargeurEcran;
@@ -45,7 +37,6 @@ public class Ecran {
 		for (int i = 0; i < QuantiteTuilesNiveau; i++) {
 			Tuiles[i] = Aleatoire.nextInt(0xffffff);
 		}
-		
 	}
 	
 	public void Liberer() {
@@ -55,7 +46,6 @@ public class Ecran {
 	}
 	
 	public void RenduEcran(int xDecallage, int yDecallage) {
-	
 	}
 	
 	public void RenduSpriteSheet(int xPosition, int yPosition, SpriteSheet SpriteSheet, boolean Fixee) {
@@ -69,8 +59,7 @@ public class Ecran {
 			for (int x = 0; x < SpriteSheet.LARGEUR_SPRITE; x++) {
 				int xAbsolu = x + xPosition;
 				if (xAbsolu < 0 || xAbsolu >=  LargeurEcran || yAbsolu < 0 || yAbsolu >= HauteurEcran);
-				PixelsEcran[xAbsolu + yAbsolu * LargeurEcran] = SpriteSheet.PixelsSpriteSheet[x + y * SpriteSheet.LARGEUR_SPRITE];
-				
+				PixelsEcran[xAbsolu + yAbsolu * LargeurEcran] = SpriteSheet.PixelsSpriteSheet[x + y * SpriteSheet.LARGEUR_SPRITE];			
 			}
 		}
 	}
@@ -94,9 +83,6 @@ public class Ecran {
 		}
 	}
 	
-	
-	
-	
 	public void RenduSprite(int xPosition, int yPosition, Sprite Sprite, boolean Fixee) {
 		if (Fixee) {
 			xPosition -= xDecallage;
@@ -115,7 +101,6 @@ public class Ecran {
 			}
 		}
 	}
-	
 	
 	public void RenduTuile(int xPosition, int yPosition, Tuile Tuile) {
 		xPosition -= xDecallage;
@@ -153,14 +138,10 @@ public class Ecran {
 				
 				if (Couleur  != ALPHA_COULEUR1) {
 						PixelsEcran[xAbsolu + yAbsolu * LargeurEcran] = Couleur;
-				}
-					
-			}
-				
+				}		
+			}			
 		}
 	}
-	
-	
 	
 	public void RenduCreature(int xPosition, int yPosition, Sprite Sprite) {
 		xPosition -= xDecallage;
@@ -181,7 +162,6 @@ public class Ecran {
 			}
 		}
 	}
-	
 	
 	public void RenduProjectile(int xPosition, int yPosition, Projectile Projectile) {
 		xPosition -= xDecallage;
@@ -229,10 +209,7 @@ public class Ecran {
 			 if (xPosition + LargeurDebug >= this.LargeurEcran) continue;
 			 if (xPosition + LargeurDebug > 0) PixelsEcran[(xPosition + LargeurDebug) + y * this.LargeurEcran] = Couleur;
 			 
-		 }
-		 
-		
+		 }	
 	}
-	
-	
 }
+*/
