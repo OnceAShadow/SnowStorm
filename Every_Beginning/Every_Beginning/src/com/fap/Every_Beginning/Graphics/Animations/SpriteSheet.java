@@ -80,16 +80,7 @@ public class SpriteSheet {
 			}
 		}	
 	}
-	
-	public SpriteSheet(String CheminDAcces, int DimensionSpriteSheet) {
-		this.CheminDAcces = CheminDAcces;
-		DIMENSIONSPRITESHEET = DimensionSpriteSheet;
-		LARGEUR_SPRITE = DimensionSpriteSheet;
-		HAUTEUR_SPRITE = DimensionSpriteSheet;
-		PixelsSpriteSheet = new int[DIMENSIONSPRITESHEET * DIMENSIONSPRITESHEET];
-		ChargementSpriteSheet();
-	}
-	
+
 	public SpriteSheet(String CheminDAcces, int LargeurSpriteSheet, int HauteurSpriteSheet) {
 		this.CheminDAcces = CheminDAcces;
 		DIMENSIONSPRITESHEET = - 1;
