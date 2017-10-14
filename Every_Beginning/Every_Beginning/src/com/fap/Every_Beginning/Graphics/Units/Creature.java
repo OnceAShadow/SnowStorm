@@ -1,14 +1,13 @@
-package com.fap.Every_Beginning.Entite.Creature;
+package com.fap.Every_Beginning.Graphics.Units;
+import com.fap.Every_Beginning.Graphics.Animations.Ecran;
 
-import com.fap.Every_Beginning.Graphics.Units.Entite;
-import com.fap.Every_Beginning.Graphics.Projectiles.Projectile;
-import com.fap.Every_Beginning.Entite.Projectile.ProjectileGuerrier;
-import com.fap.Gigueliou.Graphique.Ecran;
+//import com.fap.Every_Beginning.Graphics.Units.Entite;
+//import com.fap.Every_Beginning.Graphics.Projectiles.Projectile;
+//import com.fap.Every_Beginning.Graphics.Projectiles.ProjectileGuerrier;
 
 public abstract class Creature extends Entite {
 	
 	protected boolean EnTrainBouger = false;
-	
 	protected int PointVie, PointMagie, PointExperience;
 	protected double PointVieMaximum, PointMagieMaximum, PointExperienceMaximum;
 	protected double PointViePourcentage, PointMagiePourcentage, PointExperiencePourcentage;
@@ -18,9 +17,7 @@ public abstract class Creature extends Entite {
 	}
 	
 	protected Direction direction;
-	
-	
-	
+
 	protected void Bouger(double xAbsolu, double yAbsolu) {
 		
 		if (xAbsolu > 0) direction = Direction.DROITE;
@@ -63,19 +60,14 @@ public abstract class Creature extends Entite {
 	}
 	
 	public abstract void TickEntite();
-	
 	public abstract void RenduEntite(Ecran Ecran);
 	
 	protected void Attaquer(double xActuelle, double yActuelle, double DirectionAttaque) {
 		//DirectionAttaque *= (180/Math.PI);
-		
-		
 		Projectile ProjectileEnCours = new ProjectileGuerrier(xActuelle, yActuelle, DirectionAttaque);
 		niveau.AjouterEntite(ProjectileEnCours);
-		
 	}
-	
-	
+
 	private boolean CollisionCreatureTuile(double xAbsolu, double yAbsolu) {
 		boolean Solide = false;
 		for (int c = 0; c < 4; c++) {
@@ -90,5 +82,4 @@ public abstract class Creature extends Entite {
 		} 
 		return Solide;
 	}
-	
 }

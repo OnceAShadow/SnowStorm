@@ -1,21 +1,16 @@
-package com.fap.Every_Beginning.Entite;
+package com.fap.Every_Beginning.Graphics.Units;
 
-import java.util.Random;
-
-import com.fap.Gigueliou.Graphique.Ecran;
-import com.fap.Gigueliou.Graphique.Sprite;
-import com.fap.Gigueliou.Niveau.Niveau;
+import com.fap.Every_Beginning.Graphics.Animations.Ecran;
+import com.fap.Every_Beginning.Graphics.Animations.Sprite;
 
 public class Entite {
 
 	protected double xActuelle, yActuelle;
 	private boolean EstRetiree = false;
-	protected Niveau niveau;
-	protected final Random ALEATOIRE = new Random();
+	//protected Niveau niveau;
 	protected Sprite spriteEntite;
 	
 	public Entite() {
-		
 	}
 	
 	public Entite(int xPosition, int yPosition, Sprite Sprite) {
