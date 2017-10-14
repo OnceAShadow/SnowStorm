@@ -1,4 +1,3 @@
-/*
 package com.fap.Every_Beginning.Graphics.World;
 
 import java.util.ArrayList;
@@ -7,49 +6,50 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-//import com.fap.Every_Beginning.Graphics.Units.Entite
-//import com.fap.Every_Beginning.Entite.Creature.Joueur.Joueur;
-//import com.fap.Every_Beginning.Entite.GenerateurEntite.GenerateurEntite;
-//import com.fap.Every_Beginning.Entite.Particule.Particule;
-//import com.fap.Every_Beginning.Entite.Projectile.Projectile;
-//import com.fap.Every_Beginning.Graphique.Ecran;
-//import com.fap.Every_Beginning.Niveau.Tuile.Tuile;
-//import com.fap.Every_Beginning.Utilitees.Vecteur2i;
+
+import com.fap.Every_Beginning.Graphics.Units.Entite;
 
 public class Niveau {
-
-    protected int LargeurNiveau, HauteurNiveau;
-//	protected final Random ALEATOIRE = new Random();
-//
-//	public int LargeurNiveauAleatoire = 64;
-//	public int HauteurNiveauAleatoire = 64;
-//	public int LargeurNiveauHUB = 64;
-//	public int HauteurNiveauHUB = 64;
-//	protected int[] TuilesAleatoire;
-//	protected int[] TuilesNiveau;
-//	public int xPositionInitialeHUB = 26;
-//	public int yPositionInitialeHUB = 36;
-//	public static Niveau NiveauHUB = new NiveauHUB("/Niveau/NiveauHUB.png");
-//
-    private List<Entite> Entitees = new ArrayList<Entite>();
-//	private List<Projectile> Projectiles = new ArrayList<Projectile>();
-//	private List<Particule> Particules = new ArrayList<Particule>();
-//	private List<Joueur> Joueurs = new ArrayList<Joueur>();
 	
-//	private Comparator<Noeud> TrieurDeNoeud = new Comparator<Noeud>() {
-//		public int compare(Noeud n1, Noeud n2) {
-//			if (n2.fCout < n1.fCout) return +1;
-//			if (n2.fCout > n1.fCout) return -1;
-//			return 0;
-//		}
-//	};
+	protected int LargeurNiveau, HauteurNiveau;
+	protected final Random ALEATOIRE = new Random();
+	
+	public int LargeurNiveauAleatoire = 64;
+	public int HauteurNiveauAleatoire = 64;
+	public int LargeurNiveauHUB = 64;
+	public int HauteurNiveauHUB = 64;
+	protected int[] TuilesAleatoire; 
+	protected int[] TuilesNiveau; 
+	public int xPositionInitialeHUB = 26;
+	public int yPositionInitialeHUB = 36;
+	//public static Niveau NiveauHUB = new NiveauHUB("/Niveau/NiveauHUB.png");
+	
+	private List<Entite> Entitees = new ArrayList<Entite>();
+	/*
+	//private List<Projectile> Projectiles = new ArrayList<Projectile>();
+	//private List<Particule> Particules = new ArrayList<Particule>();
+	//private List<Joueur> Joueurs = new ArrayList<Joueur>();
+	
+	//private Comparator<Noeud> TrieurDeNoeud = new Comparator<Noeud>() {
+		public int compare(Noeud n1, Noeud n2) {
+			if (n2.fCout < n1.fCout) return +1;
+			if (n2.fCout > n1.fCout) return -1;		
+			return 0;
+		}
+	}; */
+	
+	/*
+	
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 	public Niveau(int LargeurNiveau, int HauteurNiveau) {
 		this.LargeurNiveau = LargeurNiveau;
 		this.HauteurNiveau = HauteurNiveau;
 		TuilesAleatoire = new int[LargeurNiveau * HauteurNiveau];
 		GenererNiveauAleatoire();
-	}
+	}*/
 
 	public Niveau(String CheminDAcces) {
 		ChargementNiveau(CheminDAcces);
@@ -378,4 +378,3 @@ public class Niveau {
 		}
 	}
 }
-*/
