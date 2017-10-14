@@ -1,3 +1,4 @@
+/*
 package com.fap.Every_Beginning.Graphics.Animations;
 
 import java.util.Random;
@@ -210,3 +211,4 @@ public class Ecran {
 		 }	
 	}
 }
+*/

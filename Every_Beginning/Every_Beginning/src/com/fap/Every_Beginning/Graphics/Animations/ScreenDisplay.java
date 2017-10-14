@@ -98,7 +98,7 @@ public class ScreenDisplay {
 //        }
     }
 
-    public void RenduTuile(int xPosition, int yPosition, Tuile Tuile) {
+//    public void RenduTuile(int xPosition, int yPosition, Tuile Tuile) {
 //        xPosition -= xDecallage;
 //        yPosition -= yDecallage;
 //
@@ -113,9 +113,9 @@ public class ScreenDisplay {
 //                PixelsEcran[xAbsolu + yAbsolu * LargeurEcran] = Tuile.sprite.PixelsSprite[x + y * Tuile.sprite.DIMENSIONSPRITE];
 //            }
 //        }
-    }
+// }
 
-    public void RenduCreature(int xPosition, int yPosition, Creature Creature) {
+//    public void RenduCreature(int xPosition, int yPosition, Creature Creature) {
 //        xPosition -= xDecallage;
 //        yPosition -= yDecallage;
 //
@@ -137,7 +137,7 @@ public class ScreenDisplay {
 //                }
 //            }
 //        }
-    }
+//    }
 
     public void RenduCreature(int xPosition, int yPosition, Sprite Sprite) {
 //        xPosition -= xDecallage;
@@ -159,7 +159,7 @@ public class ScreenDisplay {
 //        }
     }
 
-    public void RenduProjectile(int xPosition, int yPosition, Projectile Projectile) {
+    //public void RenduProjectile(int xPosition, int yPosition, Projectile Projectile) {
         /*
         xPosition -= xDecallage;
         yPosition -= yDecallage;
@@ -179,7 +179,7 @@ public class ScreenDisplay {
             }
         }
         */
-    }
+    //}
 
     public void DefinirDecallage(int xDecallage, int yDecallage) {
         this.xDecallage = xDecallage;

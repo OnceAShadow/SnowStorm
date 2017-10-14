@@ -1,7 +1,8 @@
 package com.fap.Every_Beginning.Graphics.Units;
 
-import com.fap.Every_Beginning.Graphics.Animations.Ecran;
+import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
 import com.fap.Every_Beginning.Graphics.Animations.Sprite;
+//import com.fap.Every_Beginning.Graphics.World.Niveau;
 
 public class Entite {
 
@@ -22,8 +23,8 @@ public class Entite {
 	public void TickEntite() {
 	}
 	
-	public void RenduEntite(Ecran Ecran) {
-		if (spriteEntite != null) Ecran.RenduSprite((int) xActuelle, (int) yActuelle, spriteEntite, true);
+	public void RenduEntite(ScreenDisplay Screen) {
+		if (spriteEntite != null) Screen.RenduSprite((int) xActuelle, (int) yActuelle, spriteEntite, true);
 	}
 	
 	public void Retirer() {
@@ -46,8 +47,7 @@ public class Entite {
 		return EstRetiree;
 	}
 	
-	public void Initialiser(Niveau Niveau) {
-		this.niveau = Niveau;
-			
-	}
+//	public void Initialiser(Niveau Niveau) {
+//		this.niveau = Niveau;
+//	}
 }

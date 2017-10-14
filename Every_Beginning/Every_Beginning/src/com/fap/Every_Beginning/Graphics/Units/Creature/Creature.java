@@ -1,6 +1,5 @@
 package com.fap.Every_Beginning.Graphics.Units.Creature;
 
-
 import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
 import com.fap.Every_Beginning.Graphics.Units.Entite;
 //import com.fap.Every_Beginning.Graphics.Projectiles.Projectile;
@@ -65,12 +64,18 @@ public abstract class Creature extends Entite {
 	
 	protected void Attaquer(double xActuelle, double yActuelle, double DirectionAttaque) {
 		//DirectionAttaque *= (180/Math.PI);
+<<<<<<< HEAD:Every_Beginning/Every_Beginning/src/com/fap/Every_Beginning/Graphics/Units/Creature/Creature.java
 	//	Projectile ProjectileEnCours = new ProjectileGuerrier(xActuelle, yActuelle, DirectionAttaque);
 	//	niveau.AjouterEntite(ProjectileEnCours);
+=======
+//		Projectile ProjectileEnCours = new ProjectileGuerrier(xActuelle, yActuelle, DirectionAttaque);
+//		niveau.AjouterEntite(ProjectileEnCours);
+>>>>>>> More changes:Every_Beginning/Every_Beginning/src/com/fap/Every_Beginning/Graphics/Units/Creature/Creature.java
 	}
 
 	private boolean CollisionCreatureTuile(double xAbsolu, double yAbsolu) {
 		boolean Solide = false;
+<<<<<<< HEAD:Every_Beginning/Every_Beginning/src/com/fap/Every_Beginning/Graphics/Units/Creature/Creature.java
 		/*
 		for (int c = 0; c < 4; c++) {
 			double xTemporaire = ((xActuelle + xAbsolu) - (c % 2) * 3) / 16;
@@ -83,6 +88,18 @@ public abstract class Creature extends Entite {
 			if (niveau.SaisirTuileHUB(xTemporaireInt, yTemporaireInt).Solide()) Solide = true;
 		} 
 		 */
+=======
+//		for (int c = 0; c < 4; c++) {
+//			double xTemporaire = ((xActuelle + xAbsolu) - (c % 2) * 3) / 16;
+//			double yTemporaire = ((yActuelle + yAbsolu) - (c / 2) * 3) / 16;
+//			int xTemporaireInt = (int) Math.ceil(xTemporaire);
+//			int yTemporaireInt = (int) Math.ceil(yTemporaire);
+//
+//			if (c % 2 == 0) xTemporaireInt = (int) Math.floor(xTemporaire);
+//			if (c / 2 == 0) yTemporaireInt = (int) Math.floor(yTemporaire);
+//			if (niveau.SaisirTuileHUB(xTemporaireInt, yTemporaireInt).Solide()) Solide = true;
+//		}
+>>>>>>> More changes:Every_Beginning/Every_Beginning/src/com/fap/Every_Beginning/Graphics/Units/Creature/Creature.java
 		return Solide;
 	}
 }
