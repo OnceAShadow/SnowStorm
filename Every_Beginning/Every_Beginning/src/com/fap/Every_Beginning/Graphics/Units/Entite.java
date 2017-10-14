@@ -2,13 +2,13 @@ package com.fap.Every_Beginning.Graphics.Units;
 
 import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
 import com.fap.Every_Beginning.Graphics.Animations.Sprite;
-//import com.fap.Every_Beginning.Graphics.World.Niveau;
+import com.fap.Every_Beginning.Graphics.World.Level;
 
 public class Entite {
 
 	protected double xActuelle, yActuelle;
-	private boolean EstRetiree = false;
-	//protected Niveau niveau;
+	private boolean IsRemoved = false;
+	protected Level level;
 	protected Sprite spriteEntite;
 	
 	public Entite() {
@@ -28,7 +28,7 @@ public class Entite {
 	}
 	
 	public void Retirer() {
-		EstRetiree = true;
+		IsRemoved = true;
 	}
 	
 	public Sprite SaisirSprite() {
@@ -43,11 +43,11 @@ public class Entite {
 		return yActuelle;
 	}
 
-	public boolean EstRetiree() {
-		return EstRetiree;
+	public boolean IsRemoved() {
+		return IsRemoved;
 	}
 	
-//	public void Initialiser(Niveau Niveau) {
-//		this.niveau = Niveau;
-//	}
+	public void Initialiser(Level Level) {
+		this.level = Level;
+	}
 }
