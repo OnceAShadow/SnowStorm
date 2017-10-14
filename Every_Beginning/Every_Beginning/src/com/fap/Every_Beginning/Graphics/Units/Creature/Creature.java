@@ -1,7 +1,8 @@
-package com.fap.Every_Beginning.Graphics.Units;
-import com.fap.Every_Beginning.Graphics.Animations.Ecran;
+package com.fap.Every_Beginning.Graphics.Units.Creature;
 
-//import com.fap.Every_Beginning.Graphics.Units.Entite;
+
+import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
+import com.fap.Every_Beginning.Graphics.Units.Entite;
 //import com.fap.Every_Beginning.Graphics.Projectiles.Projectile;
 //import com.fap.Every_Beginning.Graphics.Projectiles.ProjectileGuerrier;
 
@@ -60,16 +61,17 @@ public abstract class Creature extends Entite {
 	}
 	
 	public abstract void TickEntite();
-	public abstract void RenduEntite(Ecran Ecran);
+	public abstract void RenduEntite(ScreenDisplay Ecran);
 	
 	protected void Attaquer(double xActuelle, double yActuelle, double DirectionAttaque) {
 		//DirectionAttaque *= (180/Math.PI);
-		Projectile ProjectileEnCours = new ProjectileGuerrier(xActuelle, yActuelle, DirectionAttaque);
-		niveau.AjouterEntite(ProjectileEnCours);
+	//	Projectile ProjectileEnCours = new ProjectileGuerrier(xActuelle, yActuelle, DirectionAttaque);
+	//	niveau.AjouterEntite(ProjectileEnCours);
 	}
 
 	private boolean CollisionCreatureTuile(double xAbsolu, double yAbsolu) {
 		boolean Solide = false;
+		/*
 		for (int c = 0; c < 4; c++) {
 			double xTemporaire = ((xActuelle + xAbsolu) - (c % 2) * 3) / 16;
 			double yTemporaire = ((yActuelle + yAbsolu) - (c / 2) * 3) / 16;
@@ -80,6 +82,7 @@ public abstract class Creature extends Entite {
 			if (c / 2 == 0) yTemporaireInt = (int) Math.floor(yTemporaire);
 			if (niveau.SaisirTuileHUB(xTemporaireInt, yTemporaireInt).Solide()) Solide = true;
 		} 
+		 */
 		return Solide;
 	}
 }

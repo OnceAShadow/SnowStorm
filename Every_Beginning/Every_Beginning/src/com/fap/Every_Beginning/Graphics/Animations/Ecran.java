@@ -71,10 +71,10 @@ public class Ecran {
 			
 		for (int y = 0; y < Sprite.SaisirHauteurSprite(); y++) {
 			int yAbsolu = y + yPosition;
-			for (int x = 0; x < Sprite.SaisirLargeurSprite(); x++) {
+			for (int x = 0; x < Sprite.GetWidthSprite(); x++) {
 				int xAbsolu = x + xPosition;
 				if (xAbsolu < 0 || xAbsolu >=  LargeurEcran || yAbsolu < 0 || yAbsolu >= HauteurEcran) continue;
-				int Coul =  Sprite.PixelsSprite[x + y * Sprite.SaisirLargeurSprite()];
+				int Coul =  Sprite.PixelsSprite[x + y * Sprite.GetWidthSprite()];
 				if (Coul  != ALPHA_COULEUR1 && Coul  != ALPHA_COULEUR2) {
 				PixelsEcran[xAbsolu + yAbsolu * LargeurEcran] = Couleur;
 				}
@@ -90,10 +90,10 @@ public class Ecran {
 			
 		for (int y = 0; y < Sprite.SaisirHauteurSprite(); y++) {
 			int yAbsolu = y + yPosition;
-			for (int x = 0; x < Sprite.SaisirLargeurSprite(); x++) {
+			for (int x = 0; x < Sprite.GetWidthSprite(); x++) {
 				int xAbsolu = x + xPosition;
 				if (xAbsolu < 0 || xAbsolu >=  LargeurEcran || yAbsolu < 0 || yAbsolu >= HauteurEcran) continue;
-				int Couleur =  Sprite.PixelsSprite[x + y * Sprite.SaisirLargeurSprite()];
+				int Couleur =  Sprite.PixelsSprite[x + y * Sprite.GetWidthSprite()];
 				if (Couleur  != ALPHA_COULEUR1 && Couleur  != ALPHA_COULEUR2) {
 				PixelsEcran[xAbsolu + yAbsolu * LargeurEcran] = Couleur;
 				}
@@ -125,12 +125,12 @@ public class Ecran {
 		for (int y = 0; y < Creature.SaisirSprite().SaisirHauteurSprite(); y++) {
 			int yAbsolu = y + yPosition;
 			
-			for (int x = 0; x < Creature.SaisirSprite().SaisirLargeurSprite(); x++) {
+			for (int x = 0; x < Creature.SaisirSprite().GetWidthSprite(); x++) {
 				int xAbsolu = x + xPosition;
-				if (xAbsolu < - Creature.SaisirSprite().SaisirLargeurSprite() || xAbsolu >= LargeurEcran || yAbsolu < 0 || yAbsolu >= HauteurEcran) break;
+				if (xAbsolu < - Creature.SaisirSprite().GetWidthSprite() || xAbsolu >= LargeurEcran || yAbsolu < 0 || yAbsolu >= HauteurEcran) break;
 				if (xAbsolu < 0) xAbsolu = 0;
 				
-				int Couleur = Creature.SaisirSprite().PixelsSprite[x + y * Creature.SaisirSprite().SaisirLargeurSprite()];  
+				int Couleur = Creature.SaisirSprite().PixelsSprite[x + y * Creature.SaisirSprite().GetWidthSprite()];  
 				if ((Creature instanceof FantomeSuiveur) && Couleur == 0xFFF30401) Couleur = 0xffE7EF00;
 				if ((Creature instanceof FantomeFutee) && Couleur == 0xFFF30401) Couleur = 0xfFF9900;
 				if ((Creature instanceof FantomeFeu) && Couleur == 0xFFF30401) Couleur = 0xfbb5058;
@@ -149,12 +149,12 @@ public class Ecran {
 		for (int y = 0; y < Sprite.SaisirHauteurSprite(); y++) {
 			int yAbsolu = y + yPosition;
 			
-			for (int x = 0; x < Sprite.SaisirLargeurSprite(); x++) {
+			for (int x = 0; x < Sprite.GetWidthSprite(); x++) {
 				int xAbsolu = x + xPosition;
-				if (xAbsolu < - Sprite.SaisirLargeurSprite() || xAbsolu >= LargeurEcran || yAbsolu < 0 || yAbsolu >= HauteurEcran) break;
+				if (xAbsolu < - Sprite.GetWidthSprite() || xAbsolu >= LargeurEcran || yAbsolu < 0 || yAbsolu >= HauteurEcran) break;
 				if (xAbsolu < 0) xAbsolu = 0;
 				
-				int Couleur = Sprite.PixelsSprite[x + y * Sprite.SaisirLargeurSprite()];
+				int Couleur = Sprite.PixelsSprite[x + y * Sprite.GetWidthSprite()];
 				if (Couleur  != ALPHA_COULEUR1) {
 				PixelsEcran[xAbsolu + yAbsolu * LargeurEcran] = Couleur;
 				}
