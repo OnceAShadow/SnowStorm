@@ -10,9 +10,9 @@ public class SpriteSheet {
 
 	public final int DIMENSIONSPRITESHEET;
 	public final int WIDTH_SPRITE, HEIGHT_SPRITE;
-	private int LargeurSpriteSheet, HauteurSpriteSheet;
+	private int WidthSpriteSheet, HeightSpriteSheet;
 	public int[] PixelsSpriteSheet;
-	
+	/*
 	public static SpriteSheet TuilesHeros = new SpriteSheet("/Textures/SpriteSheet/SpriteSheetHeros.png", 256);
 	public static SpriteSheet TuilesArmes = new SpriteSheet("/Textures/SpriteSheet/SpriteSheetArmes.png", 256);
 	public static SpriteSheet TuilesNiveauHUB = new SpriteSheet("/Textures/SpriteSheet/SpriteSheetNiveauHUB.png", 256);
@@ -37,36 +37,39 @@ public class SpriteSheet {
 	public static SpriteSheet NPCLapinDroite = new SpriteSheet(NPCLapin, 1, 0, 1, 3, 16);
 	public static SpriteSheet NPCLapinBas = new SpriteSheet(NPCLapin, 2, 0, 1, 3, 16);
 	public static SpriteSheet NPCLapinGauche = new SpriteSheet(NPCLapin, 3, 0, 1, 3, 16);
+	*/
+	
+	
 	private Sprite[] Sprites;
 	
-	public SpriteSheet(SpriteSheet SpSheet, int x, int y, int LargeurSpriteSheet, int HauteurSpriteSheet, int DimensionSprite) {
+	public SpriteSheet(SpriteSheet SpSheet, int x, int y, int WidthSpriteSheet, int HeightSpriteSheet, int DimensionSprite) {
 		int xx = x * DimensionSprite;
 		int yy = y * DimensionSprite;
-		int Largeur = LargeurSpriteSheet * DimensionSprite;
-		int Hauteur = HauteurSpriteSheet * DimensionSprite;
+		int Width = WidthSpriteSheet * DimensionSprite;
+		int Height = HeightSpriteSheet * DimensionSprite;
 		
-		if (LargeurSpriteSheet == HauteurSpriteSheet) DIMENSIONSPRITESHEET = LargeurSpriteSheet;
+		if (WidthSpriteSheet == HeightSpriteSheet) DIMENSIONSPRITESHEET = WidthSpriteSheet;
 		else DIMENSIONSPRITESHEET = -1;
 		
-		WIDTH_SPRITE = Largeur;
-		HEIGHT_SPRITE = Hauteur;
-		PixelsSpriteSheet = new int[Largeur * Hauteur];
+		WIDTH_SPRITE = Width;
+		HEIGHT_SPRITE = Height;
+		PixelsSpriteSheet = new int[Width * Height];
 		
-		for (int y0 = 0; y0 < Hauteur; y0++) {
+		for (int y0 = 0; y0 < Height; y0++) {
 			int yPosition = yy + y0;
-			for (int x0 = 0; x0 < Largeur; x0++) {
+			for (int x0 = 0; x0 < Width; x0++) {
 				int xPosition = xx + x0;
 				
-				PixelsSpriteSheet[x0 + y0 * Largeur] = SpSheet.PixelsSpriteSheet[xPosition + yPosition * SpSheet.LARGEUR_SPRITE];
+				PixelsSpriteSheet[x0 + y0 * Width] = SpSheet.PixelsSpriteSheet[xPosition + yPosition * SpSheet.WIDTH_SPRITE];
 								
 			}
 		}
 		
-		int ImageCadre = 0;
-		Sprites = new Sprite[LargeurSpriteSheet * HauteurSpriteSheet];
+		int Frame = 0;
+		Sprites = new Sprite[WidthSpriteSheet * HeightSpriteSheet];
 		
-		for (int yAbsolu = 0; yAbsolu < HauteurSpriteSheet; yAbsolu++) {
-			for (int xAbsolu = 0; xAbsolu < LargeurSpriteSheet; xAbsolu++) {
+		for (int yAbsolu = 0; yAbsolu < HeightSpriteSheet; yAbsolu++) {
+			for (int xAbsolu = 0; xAbsolu < WidthSpriteSheet; xAbsolu++) {
 				int[] PixelsSprite = new int[DimensionSprite * DimensionSprite];
 				for (int y1 = 0; y1 < DimensionSprite; y1++) {
 					for (int x1 = 0; x1 < DimensionSprite; x1++) {
@@ -76,59 +79,46 @@ public class SpriteSheet {
 					}
 				}	 
 				Sprite sprite = new Sprite(PixelsSprite, DimensionSprite, DimensionSprite);	
-				Sprites[ImageCadre++] = sprite;
+				Sprites[Frame++] = sprite;
 			}
 		}	
 	}
-<<<<<<< HEAD
-
-=======
-	
-	public SpriteSheet(String CheminDAcces, int DimensionSpriteSheet) {
-		this.CheminDAcces = CheminDAcces;
-		DIMENSIONSPRITESHEET = DimensionSpriteSheet;
-		WIDTH_SPRITE = DimensionSpriteSheet;
-		HEIGHT_SPRITE = DimensionSpriteSheet;
-		PixelsSpriteSheet = new int[DIMENSIONSPRITESHEET * DIMENSIONSPRITESHEET];
-		ChargementSpriteSheet();
-	}
-	
->>>>>>> spritesheet 1
-	public SpriteSheet(String CheminDAcces, int LargeurSpriteSheet, int HauteurSpriteSheet) {
-		this.CheminDAcces = CheminDAcces;
+/*
+	public SpriteSheet(String Path, int WidthSpriteSheet, int HeightSpriteSheet) {
+		this.Path = Path;
 		DIMENSIONSPRITESHEET = - 1;
-		WIDTH_SPRITE = LargeurSpriteSheet;
-		HEIGHT_SPRITE = HauteurSpriteSheet;
-		PixelsSpriteSheet = new int[WIDTH_SPRITE * HEIGHT_SPRITE];
-		ChargementSpriteSheet();
-	}
+		this.WidthSpriteSheet = WidthSpriteSheet;
+		this.HeightSpriteSheet = HeightSpriteSheet;
+		PixelsSpriteSheet = new int[WidthSpriteSheet * HeightSpriteSheet];
+		LoadSpriteSheet();
+	}*/
 
-	public Sprite[] SaisirSprites() {
+	public Sprite[] GetSprites() {
 		return Sprites;
 	}
 
-	public int SaisirLargeurSpriteSheet() {
-		return LargeurSpriteSheet;
+	public int GetLargeurSpriteSheet() {
+		return WidthSpriteSheet;
 	}
 	
-	public int SaisirHauteurSpriteSheet() {
-		return HauteurSpriteSheet;
+	public int GetSpriteSheet() {
+		return HeightSpriteSheet;
 	}
 	
-	public int[] SaisirPixels() {
+	public int[] GetPixels() {
 		return PixelsSpriteSheet;
 	}
 	
-	private void ChargementSpriteSheet() {
+	private void LoadSpriteSheet() {
 		try {
-		//	System.out.println("Chargement" + CheminDAcces);
-			BufferedImage ImageSpriteSheet = ImageIO.read(SpriteSheet.class.getResource(CheminDAcces));
-		//	System.out.println("Reussi" + CheminDAcces);
+			System.out.println("Chargement" + Path);
+			BufferedImage ImageSpriteSheet = ImageIO.read(SpriteSheet.class.getResource(Path));
+			System.out.println("Reussi" + Path);
 			
-			LargeurSpriteSheet = ImageSpriteSheet.getWidth();
-			HauteurSpriteSheet = ImageSpriteSheet.getHeight();
-			PixelsSpriteSheet = new int[LargeurSpriteSheet * HauteurSpriteSheet];
-			ImageSpriteSheet.getRGB(0, 0, LargeurSpriteSheet, HauteurSpriteSheet, PixelsSpriteSheet, 0, LargeurSpriteSheet);
+			WidthSpriteSheet = ImageSpriteSheet.getWidth();
+			HeightSpriteSheet = ImageSpriteSheet.getHeight();
+			PixelsSpriteSheet = new int[WidthSpriteSheet * HeightSpriteSheet];
+			ImageSpriteSheet.getRGB(0, 0, WidthSpriteSheet, HeightSpriteSheet, PixelsSpriteSheet, 0, WidthSpriteSheet);
 		} 	catch (IOException e) {
 				e.printStackTrace();
 		}
@@ -137,4 +127,3 @@ public class SpriteSheet {
 		}
 	}
 }
-*/

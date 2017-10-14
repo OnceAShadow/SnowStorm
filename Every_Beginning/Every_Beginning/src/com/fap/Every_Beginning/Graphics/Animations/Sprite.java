@@ -1,5 +1,5 @@
-/*
-package com.fap.Gigueliou.Graphique;
+
+package com.fap.Every_Beginning.Graphics.Animations;
 
 public class Sprite {
 
@@ -8,7 +8,7 @@ public class Sprite {
 	public int LargeurSprite, HauteurSprite;
 	public int[] PixelsSprite;
 	protected SpriteSheet spriteSheet;
-	
+/*	
 	// SpritesMateriel
 	public static Sprite TuileVide = new Sprite(16, 0x5D3F97);
 	public static Sprite HUBGazon1 = new Sprite(16, 0, 0, SpriteSheet.TuilesNiveauHUB);
@@ -116,7 +116,7 @@ public class Sprite {
 	// Sprites NPC
 	public static Sprite NPCPapillon = new Sprite(12, 0, 0, SpriteSheet.NPCPapillonMouvement);
 	public static Sprite NPCLapin = new Sprite(12, 0, 0, SpriteSheet.NPCLapinBas);
-	
+	*/
 	protected Sprite(SpriteSheet SpriteSheet, int LargeurSprite, int HauteurSprite) {
 		
 		this.LargeurSprite = LargeurSprite;
@@ -221,7 +221,7 @@ public class Sprite {
 		double Resultat = x * sin + y * cos;
 		return Resultat;
 	}
-	
+	/*
 	public static Sprite[] Separer(SpriteSheet Sheet) {
 		int QuantiteSprite = ((Sheet.SaisirLargeurSpriteSheet() * Sheet.SaisirHauteurSpriteSheet()) / (Sheet.LARGEUR_SPRITE * Sheet.HAUTEUR_SPRITE));
 		Sprite[] Sprites = new Sprite[QuantiteSprite];
@@ -245,7 +245,7 @@ public class Sprite {
 		}	
 		return Sprites;
 	}
-
+*/
 	private void DefinirCouleur(int Couleur) {
 		for(int i = 0; i < LargeurSprite * HauteurSprite; i++) {
 			PixelsSprite[i] = Couleur;
@@ -263,10 +263,9 @@ public class Sprite {
 	private void ChargementSprite() {
 		for (int y = 0; y < LargeurSprite; y++) {
 			for (int x =0; x < LargeurSprite; x++) {
-				PixelsSprite[x + y * LargeurSprite] = spriteSheet.PixelsSpriteSheet[(x + this.x) + (y + this.y) * spriteSheet.LARGEUR_SPRITE];
+				PixelsSprite[x + y * LargeurSprite] = spriteSheet.PixelsSpriteSheet[(x + this.x) + (y + this.y) * spriteSheet.WIDTH_SPRITE];
 				
 			}
 		}
 	}	
 }
-*/
