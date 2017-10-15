@@ -362,11 +362,17 @@ public class Level {
 		int y0 = (yDecallage - screen.heightTile) / screen.heightTile;
 		int y1 = (yDecallage + screen.heightScreen + screen.heightTile) / 64 ;
 		
+		int loopcount = 0;
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
-				Tile.tile_Grass.renderTile(x, y, screen);
+				getLevelTiles(x, y).renderTile(x, y, screen);
+
+				loopcount++;
 			}
 		}
+		System.out.println("***********************************");
+		System.out.println(loopcount);
+	
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).renderEntity(screen);
 		}

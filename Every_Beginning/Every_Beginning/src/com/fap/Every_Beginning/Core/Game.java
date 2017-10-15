@@ -72,7 +72,6 @@ public class Game extends Canvas implements Runnable {
 		while(running) {
 
 			tickGame();
-			renderOnScreen();
 
 			tps++;
 			fps++;
@@ -83,6 +82,7 @@ public class Game extends Canvas implements Runnable {
 						+ fps + " , Tps : " + tps);
 				fps = 0;
 				tps = 0;
+				renderOnScreen();
 				
 			}
 		}
@@ -104,7 +104,7 @@ public class Game extends Canvas implements Runnable {
 		
 		screen.clear();
 		
-		level.renderLevel(0, 0, screen);
+		level.renderLevel(16, 16, screen);
 		
 		for (int i = 0; i < pixelsInFrame.length; i++) {
 			pixelsInFrame[i] = screen.pixelsScreen[i];

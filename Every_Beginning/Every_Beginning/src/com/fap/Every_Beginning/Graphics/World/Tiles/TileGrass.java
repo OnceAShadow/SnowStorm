@@ -12,8 +12,10 @@ public class TileGrass extends Tile {
 	}
 	
 	public void renderTile(int x, int y, ScreenDisplay screen) {
+	//	System.out.println((x << 6) + "  ..  " +  "  ..  " + (y << 6));
 
-		screen.renderTile(x, y, this);
+		screen.renderTile(x << 6, y << 6, this);
+		
 	}
 
 	public boolean solid() {

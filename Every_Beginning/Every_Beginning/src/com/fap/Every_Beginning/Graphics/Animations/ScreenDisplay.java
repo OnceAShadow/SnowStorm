@@ -1,5 +1,6 @@
 package com.fap.Every_Beginning.Graphics.Animations;
 
+import java.awt.Color;
 import java.util.Random;
 
 import com.fap.Every_Beginning.Graphics.World.Tiles.Tile;
@@ -11,9 +12,9 @@ public class ScreenDisplay {
     public int[] pixelsScreen;
     public int widthTile = 64;
     public int heightTile = 64;
-    public int largeurNiveau = 8;
-    public int hauteurNiveau = 8;
-//    public int QuantiteTuilesNiveau = LargeurNiveau * HauteurNiveau;
+  //  public int widthLevel = 64;
+  //  public int heightLevel = 64;
+ //   public int amoutnOfTiles = widthLevel * heightLevel;
 //    public int PlageWidthTile = LargeurNiveau - 1;
 //   public int PlageHeightTile = HauteurNiveau - 1;
 
@@ -21,8 +22,8 @@ public class ScreenDisplay {
     private final int ALPHA_COULEUR1 = 0xFFFF00FF;
     private final int ALPHA_COULEUR2 = 0xff7f007f;
 
-    public int[] tiles = new int[largeurNiveau * hauteurNiveau];
-    private Random randomRoll = new Random();
+   // public int[] tiles = new int[widthLevel * heightLevel];
+  //  private Random randomRoll = new Random();
 
     public ScreenDisplay(int widthScreen, int heightScreen) {
         this.widthScreen = widthScreen;
@@ -30,10 +31,10 @@ public class ScreenDisplay {
 
         pixelsScreen = new int[widthScreen * heightScreen];
 
-
-        for (int i = 0; i < pixelsScreen.length ; i++) {
-            tiles[i] = randomRoll.nextInt(0xffffff);
-        }
+/*
+        for (int i = 0; i <= amoutnOfTiles - 1 ; i++) {
+        	tiles[i] = randomRoll.nextInt(0xffffff);
+        } */
     }
 
     public void clear() {
@@ -58,7 +59,8 @@ public class ScreenDisplay {
                 int xAbsolu = x + xPosition;
                 if (xAbsolu < 0 || xAbsolu >=  widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen);
                 pixelsScreen[xAbsolu + yAbsolu * widthScreen] = spriteSheet.pixelsSpriteSheet[x + y * spriteSheet.WIDTH_SPRITE];
-           }
+                System.out.println(widthScreen);
+            }
         }
     }
 
@@ -89,33 +91,59 @@ public class ScreenDisplay {
 
         for (int y = 0; y < sprite.getHeightSprite(); y++) {
            int yAbsolu = y + yPosition;
-           int xAbsolu = x + xPosition;
             for (int x = 0; x < sprite.getWidthSprite(); x++) {
+            	int xAbsolu = x + xPosition;
                if (xAbsolu < 0 || xAbsolu >=  widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen) continue;
                 int color =  sprite.pixelsSprite[x + y * sprite.getWidthSprite()];
                 if (color  != ALPHA_COULEUR1 && color  != ALPHA_COULEUR2) {
                 	pixelsScreen[xAbsolu + yAbsolu * widthScreen] = color;
                 }
+                
             }
         }
     }
-
    public void renderTile(int xPosition, int yPosition, Tile tile) {
        xPosition -= xOffset;
        yPosition -= yOffset;
-
+       
+       int yCount = 0, xCount = 0;
+       
        for (int y = 0; y < tile.sprite.heightSprite; y++) {
-            int yAbsolu = y + yPosition;
+   		
+    	   int yAbsolu = y + yPosition;
             for (int x = 0; x < tile.sprite.widthSprite; x++) {
-               
+            	xCount++;
+            	
+
+         //   	System.out.println("largeur" + tile.sprite.widthSprite);
+
+            	
+
             	int xAbsolu = x + xPosition;
-                if (xAbsolu < - 16 || xAbsolu >= widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen) break;
+                if (xAbsolu < - 64 || xAbsolu >= widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen) break;
                 if (xAbsolu < 0) xAbsolu = 0;
 
                 pixelsScreen[xAbsolu + yAbsolu * widthScreen] = tile.sprite.pixelsSprite[x + y * tile.sprite.widthSprite];
-
+               
+             //   System.out.println(tile);
+             //   System.out.println(tile.sprite);
+             //   System.out.println(tile.sprite.spriteSheet);
+            //   System.out.println(tile.sprite.pixelsSprite[x + y * tile.sprite.widthSprite]);
+                
+              //  pixelsScreen[xAbsolu + yAbsolu * widthScreen] = 0x434343;
+            }
+            
+            if (xCount == 64) {
+            	yCount++;
+            	xCount = 0;
             }
         }
+       if (yCount == 64) {
+           System.out.print("P" + " ");	   
+       } else {
+           System.out.print("F! ");
+       }
+
    }
 
 //    public void RenduCreature(int xPosition, int yPosition, Creature Creature) {

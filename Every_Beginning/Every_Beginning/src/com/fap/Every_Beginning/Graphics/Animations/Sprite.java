@@ -15,7 +15,7 @@ public class Sprite {
 	
 	public static Sprite spriteGrass = new Sprite(64, 64, 0, 0, SpriteSheet.tiles_Base);
 	public static Sprite spriteRock = new Sprite(64, 64, 1, 0, SpriteSheet.tiles_Base);
-	public static Sprite spriteWater = new Sprite(64, 64, 2, 0, SpriteSheet.tiles_Base);
+	/*public static Sprite spriteWater = new Sprite(64, 64, 2, 0, SpriteSheet.tiles_Base);
 	public static Sprite spriteSand = new Sprite(64, 64, 3, 0, SpriteSheet.tiles_Base);
 	public static Sprite spriteWoodFloor = new Sprite(64, 64, 0, 1, SpriteSheet.tiles_Base);
 	public static Sprite spriteWoodWall = new Sprite(64, 64, 1, 1, SpriteSheet.tiles_Base);
@@ -37,7 +37,7 @@ public class Sprite {
 	
 	// Sprites Particules	
 	public static Sprite spriteParticules1 = new Sprite(3, 3, 0xFFAAAAAA);
-	
+	*/
 	
 	protected Sprite(SpriteSheet spriteSheet, int widthSprite, int heightSprite) {
 		
@@ -182,10 +182,11 @@ public class Sprite {
 	
 	private void loadSprite() {
 
-		for (int y = 0; y < widthSprite; y++) {
-			for (int x =0; x < widthSprite; x++) {
+		for (int y = 0; y < heightSprite; y++) {
+			for (int x = 0; x < widthSprite; x++) {
 				pixelsSprite[x + y * widthSprite] = spriteSheet.pixelsSpriteSheet[(x + this.x) + (y + this.y) * spriteSheet.WIDTH_SPRITE];
-				
+                System.out.println(pixelsSprite[x + y * widthSprite]);
+
 			}
 		}
 	}	

@@ -15,7 +15,7 @@ public class SpriteSheet {
 	
 	
 	public static SpriteSheet tiles_Base = new SpriteSheet("/Textures/SpriteSheets/Tiles/TilesStarterKit.png", 256, 192, 64, 64);
-	
+	/*
 	public static SpriteSheet player_Base = new SpriteSheet("/Textures/SpriteSheets/Players/Player_Base/Player_Base.png", 256, 192, 64, 64);
 
 	public static SpriteSheet player_Base_Up = new SpriteSheet(player_Base, 2, 0, 1, 3, 64, 64);
@@ -29,7 +29,7 @@ public class SpriteSheet {
 	public static SpriteSheet zombie_Base_Left = new SpriteSheet(zombie_Base, 3, 0, 1, 3, 64, 64);
 	public static SpriteSheet zombie_Base_Down = new SpriteSheet(zombie_Base, 0, 0, 1, 3, 64, 64);
 	public static SpriteSheet zombie_Base_Right = new SpriteSheet(zombie_Base, 1, 0, 1, 3, 64, 64);
-	
+	*/
 		
 	private Sprite[] sprites;
 	

@@ -9,6 +9,8 @@ public class Tile {
 		public static Tile tile_Rock = new TileRock(Sprite.spriteRock);
 
 		public static final int COLOR_GRASS = 0xff27E109;
+		public static final int COLOR_ROCK = 0xffB8B8B8;
+		
 		/*
 		public static Tuile HUBGazon3 = new TuileHUBGazon(Sprite.HUBGazon3);
 		public static Tuile HUBGazon4 = new TuileHUBGazon(Sprite.HUBGazon4);
