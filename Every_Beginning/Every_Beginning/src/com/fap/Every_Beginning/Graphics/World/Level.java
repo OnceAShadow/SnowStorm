@@ -58,7 +58,7 @@ public class Level {
 
 
 	protected void loadLevel(String path) {
-
+		System.out.println("ici");
 	}
 	
 	protected void generateLevel() {
@@ -147,6 +147,7 @@ public class Level {
 	*/	
 	
 	public Tile getLevelTiles(int x, int y) {
+		System.out.println("ici");
 		if (x < 0 || y < 0 || x >= widthLevelStart || y >= heightLevelStart) return Tile.tile_Rock;
 		
 	 		if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_GRASS) return Tile.tile_Grass;

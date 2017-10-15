@@ -1,6 +1,7 @@
 package com.fap.Every_Beginning.Graphics.World;
 
 import java.awt.image.BufferedImage;
+
 import java.io.IOError;
 import java.io.IOException;
 import java.net.URL;
@@ -16,14 +17,16 @@ public class LevelWorld extends Level {
 	protected void loadLevel(String path) {
 		try {
             BufferedImage frameInScreens = ImageIO.read(LevelWorld.class.getResource(path));
-
-			int w = widthLevel = frameInScreens.getWidth();
+            
+            int w = widthLevel = frameInScreens.getWidth();
 			int h = heightLevel = frameInScreens.getHeight();;
 			levelTiles = new int[widthLevel * heightLevel];
 
 
 			frameInScreens.getRGB(0, 0, w, h, levelTiles, 0, widthLevel);
-		} catch (IOException e) {
+
+		} catch (IOException e) { 
+
 		}
 		
 		
