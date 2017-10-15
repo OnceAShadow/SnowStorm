@@ -2,7 +2,6 @@ package com.fap.Every_Beginning.Core;
 
 import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
 import com.fap.Every_Beginning.Graphics.World.GameWorld;
-import com.sun.corba.se.impl.orbutil.graph.Graph;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +30,7 @@ public class DrawSlave {
 
     public void drawWorld() {
 
+
         BufferStrategy BufferStrategy = game.getBufferStrategy();
 
         if (BufferStrategy == null) {
@@ -43,6 +43,14 @@ public class DrawSlave {
         graphics.dispose();
         BufferStrategy.show();
 
+
+
+    	for (int y = 0; y < Keeper.gameWorld.getHeightLevel(); y++) {
+    		for (int x = 0; x < Keeper.gameWorld.getWidthLevel(); x++) {
+    		System.out.println("x : " + x);
+    		}
+    		System.out.println("y : " + y);
+     	}
 
 //        //level.renderLevel(-100, -100, screen);
 //
@@ -57,5 +65,26 @@ public class DrawSlave {
 //        graphics.drawImage(imageInFrame, 0, 0, screen.width, screen.height, null);
 //        graphics.dispose();
 //        BufferStrategy.show();
+    	
+    	
+    	
+    	/*
+    	boucle world
+    	
+    	for 
+    	
+    	boucle tuile
+    	boucle pixel
+    	
+    	
+    	
+    	
+    	*/
+    	
+    	
+    	
+    	
+    	
+    	
     }
 }

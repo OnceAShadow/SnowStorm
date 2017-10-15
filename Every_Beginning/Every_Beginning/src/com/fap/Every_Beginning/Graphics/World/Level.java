@@ -114,7 +114,7 @@ public class Level {
 		for (int c =0; c < 4; c++) {
 			int xTemporaire = (xActuelle - (c % 2) * dimensionEntite + xDecallage) / 16;
 			int yTemporaire = (yActuelle - (c / 2) * dimensionEntite + yDecallage) / 16;
-			if (getLevelTiles(xTemporaire, yTemporaire).solid()) solid = true;
+		//	if (getLevelTiles(xTemporaire, yTemporaire).solid()) solid = true;
 		}return solid;
 	}
 	
@@ -217,10 +217,10 @@ public class Level {
 
 	 */
     public Tile getLevelTiles(int x, int y) {
-        if (x < 0 || y < 0 || x >= widthLevelStart || y >= heightLevelStart) return Tile.tile_Void;
+ //       if (x < 0 || y < 0 || x >= widthLevelStart || y >= heightLevelStart) return Tile.tile_Void;
 
-        if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_GRASS) return Tile.tile_Grass;
-        if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_ROCK) return Tile.tile_Void;
+  //      if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_GRASS) return Tile.tile_Grass;
+  //      if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_ROCK) return Tile.tile_Void;
 	 		/*
 	 		if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBGazon3) return Tuile.HUBGazon3;
 	 		if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBGazon4) return Tuile.HUBGazon4;
@@ -292,7 +292,8 @@ public class Level {
 		  	if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBPatio39) return Tuile.HUBPatio39;
 		  	if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBPatio40) return Tuile.HUBPatio40;
 	 		 */
-        else return Tile.tile_Rock;
+ //       else return Tile.tile_Rock;
+    	return null;
     }
     public List <Entite> getEntities(Entite entity, int radius) {
 		List<Entite> result = new ArrayList<Entite>();
@@ -365,7 +366,7 @@ public class Level {
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
 				System.out.println(x);
-				getLevelTiles(x, y).renderTile(x, y, screen);
+//				getLevelTiles(x, y).renderTile(x, y, screen);
 
 				loopcount++;
 			}
