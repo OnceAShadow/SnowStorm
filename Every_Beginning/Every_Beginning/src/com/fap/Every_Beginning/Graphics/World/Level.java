@@ -147,11 +147,11 @@ public class Level {
 	*/	
 	
 	public Tile getLevelTiles(int x, int y) {
-			if (x < 0 || y < 0 || x >= widthLevelStart || y >= heightLevelStart) return Tile.tile_Rock;
+			if (x < 0 || y < 0 || x >= widthLevelStart || y >= heightLevelStart) return Tile.tile_Void;
 		
 	 		if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_GRASS) return Tile.tile_Grass;
+	 		if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_ROCK) return Tile.tile_Void;
 	 		/*
-	 		if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBGazon2) return Tuile.HUBGazon2;
 	 		if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBGazon3) return Tuile.HUBGazon3;
 	 		if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBGazon4) return Tuile.HUBGazon4;
 	 		if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBGazon5) return Tuile.HUBGazon5;
@@ -221,9 +221,8 @@ public class Level {
 		  	if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBPatio38) return Tuile.HUBPatio38;
 		  	if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBPatio39) return Tuile.HUBPatio39;
 		  	if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBPatio40) return Tuile.HUBPatio40;
-		  	else 
-		*/
-		return Tile.tile_Grass;
+	 		 */
+		  	else return Tile.tile_Rock;
 	}
 	/*
 	public List<Noeud> TrouverChemin(Vecteur2i PointDepart, Vecteur2i Objectif) {
@@ -365,6 +364,7 @@ public class Level {
 		int loopcount = 0;
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
+				System.out.println(x);
 				getLevelTiles(x, y).renderTile(x, y, screen);
 
 				loopcount++;

@@ -74,7 +74,10 @@ public class GameOn extends Canvas implements Runnable {
             return;
         }
         screen.clear();
-        //level.renderLevel(16, 16, screen);
+
+
+        level.renderLevel(-100, -100, screen);
+
 
         for (int i = 0; i < pixelsInFrame.length; i++) {
             pixelsInFrame[i] = screen.pixelsScreen[i];

@@ -7,6 +7,7 @@ public class Tile {
 	
 		public static Tile tile_Grass = new TileGrass(Sprite.spriteGrass);
 		public static Tile tile_Rock = new TileRock(Sprite.spriteRock);
+		public static Tile tile_Void = new TileVoid(Sprite.spriteVoid);
 
 		public static final int COLOR_GRASS = 0xff27E109;
 		public static final int COLOR_ROCK = 0xffB8B8B8;
@@ -42,7 +43,6 @@ public class Tile {
 		public static Tuile HUBRoche = new TuileHUBRoche(Sprite.HUBRoche);
 		
 		
-		public static Tuile TuileVide = new TuileVide(Sprite.TuileVide);
 		
 		
 		public static Tuile HUBPatio1 = new TuileHUBPatioBord(Sprite.HUBPatio1);

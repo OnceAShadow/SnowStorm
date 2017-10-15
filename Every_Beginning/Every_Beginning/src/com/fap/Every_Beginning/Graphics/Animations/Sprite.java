@@ -10,7 +10,7 @@ public class Sprite {
 	protected SpriteSheet spriteSheet;
 	
 	// SpritesMateriel
-	public static Sprite tileVoid = new Sprite(64, 64, 0x5D3F97);
+	public static Sprite spriteVoid = new Sprite(64, 64, 0x5D3F97);
 	
 	
 	public static Sprite spriteGrass = new Sprite(64, 64, 0, 0, SpriteSheet.tiles_Base);
