@@ -109,11 +109,12 @@ public class ScreenDisplay {
 
             for (int x = 0; x < tile.sprite.widthSprite; x++) {
                 int xAbsolu = x + xPosition;
-                if (xAbsolu < - 16 || xAbsolu >= widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen) break;
+                if (xAbsolu < - 64 || xAbsolu >= widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen) break;
                 if (xAbsolu < 0) xAbsolu = 0;
 
                 pixelsScreen[xAbsolu + yAbsolu * widthScreen] = tile.sprite.pixelsSprite[x + y * tile.sprite.widthSprite];
-           }
+
+            }
         }
    }
 

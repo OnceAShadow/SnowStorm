@@ -59,6 +59,7 @@ public class Game extends Canvas implements Runnable {
 	public synchronized void start() {
 		running = true;
 		thread = new Thread(this, "Display");
+		thread.start();
 	}
 	
 	public void run() {
@@ -69,7 +70,7 @@ public class Game extends Canvas implements Runnable {
 		int tps = 0;
 		
 		while(running) {
-			
+
 			tickGame();
 			renderOnScreen();
 
@@ -90,7 +91,8 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void tickGame() {
-		//level.tickLevel();
+		level.tickLevel();
+		
 	}
 	
 	public void renderOnScreen() {
@@ -100,7 +102,9 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 		
-		//level.renderLevel(100, 100, screen);
+		screen.clear();
+		
+		level.renderLevel(0, 0, screen);
 		
 		for (int i = 0; i < pixelsInFrame.length; i++) {
 			pixelsInFrame[i] = screen.pixelsScreen[i];

@@ -11,6 +11,7 @@ public class TileRock extends Tile {
 	}
 	
 	public void renderTile(int x, int y, ScreenDisplay screen) {
+		
 		screen.renderTile(x / 64, y / 64, this);
 	}
 

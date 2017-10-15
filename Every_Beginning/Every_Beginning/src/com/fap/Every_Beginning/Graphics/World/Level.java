@@ -58,7 +58,7 @@ public class Level {
 
 
 	protected void loadLevel(String path) {
-		System.out.println("ici");
+
 	}
 	
 	protected void generateLevel() {
@@ -147,8 +147,7 @@ public class Level {
 	*/	
 	
 	public Tile getLevelTiles(int x, int y) {
-		System.out.println("ici");
-		if (x < 0 || y < 0 || x >= widthLevelStart || y >= heightLevelStart) return Tile.tile_Rock;
+			if (x < 0 || y < 0 || x >= widthLevelStart || y >= heightLevelStart) return Tile.tile_Rock;
 		
 	 		if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_GRASS) return Tile.tile_Grass;
 	 		/*
@@ -355,20 +354,19 @@ public class Level {
 	
 	public void renderLevel(int xDecallage, int yDecallage, ScreenDisplay screen) {
 		
-		System.out.println("ici");
+		
 		screen.setOffset(xDecallage, yDecallage);
 		
 		int x0 = (xDecallage - screen.widthTile) / screen.widthTile;
-		int x1 = (xDecallage + screen.widthScreen + screen.widthTile) >> 4;
+		int x1 = (xDecallage + screen.widthScreen + screen.widthTile) / 16 ;
 		int y0 = (yDecallage - screen.heightTile) / screen.heightTile;
-		int y1 = (yDecallage + screen.heightScreen + screen.heightTile) >> 4;
+		int y1 = (yDecallage + screen.heightScreen + screen.heightTile) / 16;
 		
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x <x1; x++) {
 				getLevelTiles(x, y).renderTile(x, y, screen);
 			}
 		}
-		
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).renderEntity(screen);
 		}
