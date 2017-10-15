@@ -10,6 +10,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
+import com.fap.Every_Beginning.Graphics.World.GameWorld;
 import com.fap.Every_Beginning.Graphics.World.Level;
 
 public class GameOn extends Canvas implements Runnable {
@@ -19,10 +20,9 @@ public class GameOn extends Canvas implements Runnable {
     private static int widthFrame = widthResolution;
     private static int heightFrame = heightResolution;
 
-    protected  JFrame frame;
+    protected JFrame frame;
     private Thread thread;
     private ScreenDisplay screen;
-    private Level level;
     private boolean running;
 
     private BufferedImage imageInFrame = new BufferedImage(widthFrame, heightFrame, BufferedImage.TYPE_INT_RGB);
@@ -36,7 +36,8 @@ public class GameOn extends Canvas implements Runnable {
         frame = new JFrame();
         frame.setResizable(false);
 
-        level = Keeper.createWordl("/LevelStart.png");
+        Keeper.createWorld("/LevelStart.png");
+        Keeper.setDrawSlave(this);
     }
 
     public synchronized void startGame() {
@@ -50,25 +51,23 @@ public class GameOn extends Canvas implements Runnable {
         requestFocus();
 
         while(running) {
-
-            tickGame();
             Keeper.gameTickUp();
+            Keeper.drawWorld();
 
             if (System.currentTimeMillis() - clock1Sec > 1000) {
                 clock1Sec += 1000;
                 frame.setTitle(Keeper.gameTitle + "    |     " + "Fps: " + Keeper.getFPS() + " , Tps: " + Keeper.getTPS()
                         + ", TotalTicks: " + Keeper.getTotalTicks());
-
-                renderOnScreen();
                 Keeper.resetFPS();
             }
         }
 
-        Stop();
-    }
-
-    public void tickGame() {
-        level.tickLevel();
+        running = false;
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void renderOnScreen() {
@@ -80,7 +79,7 @@ public class GameOn extends Canvas implements Runnable {
 
         screen.clear();
 
-        level.renderLevel(16, 16, screen);
+        //level.renderLevel(16, 16, screen);
 
         for (int i = 0; i < pixelsInFrame.length; i++) {
             pixelsInFrame[i] = screen.pixelsScreen[i];
@@ -93,14 +92,5 @@ public class GameOn extends Canvas implements Runnable {
         graphics.drawImage(imageInFrame, 0, 0, widthFrame, heightFrame, null);
         graphics.dispose();
         BufferStrategy.show();
-    }
-
-    public synchronized void Stop() {
-        running = false;
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

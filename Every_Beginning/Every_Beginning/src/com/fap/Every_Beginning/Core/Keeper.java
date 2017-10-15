@@ -1,23 +1,41 @@
 package com.fap.Every_Beginning.Core;
 
-import com.fap.Every_Beginning.Graphics.World.Level;
-import com.fap.Every_Beginning.Graphics.World.LevelWorld;
+import com.fap.Every_Beginning.Graphics.World.GameWorld;
 
 public class Keeper {
 
     public static String gameTitle = "Every Beginning";
+    public static GameWorld gameWorld;
+
     private static int fps = 0;
     private static int tps = 0;
     private static int totalTicks = 0;
+    private static String gameWorldPath = "";
+    private static DrawSlave drawSlave = new DrawSlave();
 
-    public static Level createWordl(String path) {
-        return(new LevelWorld(path));
+    public static GameWorld createWorld(String path) {
+        gameWorldPath = path;
+        gameWorld = new GameWorld(path);
+        return(gameWorld);
     }
 
     public static void gameTickUp() {
         fps++;
         tps++;
         totalTicks++;
+    }
+
+    public static void resetFPS() {
+        fps = 0;
+        tps = 0;
+    }
+
+    public static void drawWorld() {
+        drawSlave.drawWorld();
+    }
+
+    public static void setDrawSlave(GameOn game) {
+        drawSlave.game = game;
     }
 
     public static int getFPS() {
@@ -32,8 +50,8 @@ public class Keeper {
         return totalTicks;
     }
 
-    public static void resetFPS() {
-        fps = 0;
-        tps = 0;
+    public static String getGameWorldPath() {
+        return getGameWorldPath();
     }
+
 }
