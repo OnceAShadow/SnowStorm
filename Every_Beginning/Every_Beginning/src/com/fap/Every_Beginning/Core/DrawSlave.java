@@ -1,6 +1,8 @@
 package com.fap.Every_Beginning.Core;
 
 import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
+import com.fap.Every_Beginning.Graphics.World.GameWorld;
+import com.sun.corba.se.impl.orbutil.graph.Graph;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,27 +15,35 @@ public class DrawSlave {
     protected JFrame frame;
     protected ScreenDisplay screen;
     protected GameOn game;
+    protected GameWorld gameWorld;
 
     private BufferedImage imageInFrame;
     private int[] pixelsInFrame;
 
-    public DrawSlave(GameOn game, JFrame frame, ScreenDisplay screen) {
+    public DrawSlave(GameOn game, JFrame frame, ScreenDisplay screen, GameWorld gameWorld) {
         this.game = game;
         this.frame = frame;
         this.screen = screen;
+        this.gameWorld = gameWorld;
         this.imageInFrame = new BufferedImage(screen.width, screen.height, BufferedImage.TYPE_INT_RGB);
         this.pixelsInFrame = ((DataBufferInt) imageInFrame.getRaster().getDataBuffer()).getData();
     }
 
     public void drawWorld() {
 
-//        BufferStrategy BufferStrategy = game.getBufferStrategy();
-//        if (BufferStrategy == null) {
-//            game.createBufferStrategy(3);
-//            return;
-//        }
-//        screen.clear();
-//
+        BufferStrategy BufferStrategy = game.getBufferStrategy();
+
+        if (BufferStrategy == null) {
+            game.createBufferStrategy(3);
+            return;
+        }
+        Graphics graphics = BufferStrategy.getDrawGraphics();
+
+        graphics.drawLine(100,100, 100, 200);
+        graphics.dispose();
+        BufferStrategy.show();
+
+
 //        //level.renderLevel(-100, -100, screen);
 //
 //        for (int i = 0; i < pixelsInFrame.length; i++) {

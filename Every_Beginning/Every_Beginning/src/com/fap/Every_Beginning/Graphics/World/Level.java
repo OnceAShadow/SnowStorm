@@ -146,11 +146,81 @@ public class Level {
 	}
 	*/	
 	
-	public Tile getLevelTiles(int x, int y) {
-			if (x < 0 || y < 0 || x >= widthLevelStart || y >= heightLevelStart) return Tile.tile_Void;
-		
-	 		if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_GRASS) return Tile.tile_Grass;
-	 		if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_ROCK) return Tile.tile_Void;
+	/*
+	public List<Noeud> TrouverChemin(Vecteur2i PointDepart, Vecteur2i Objectif) {
+		List<Noeud> ListeOuverte = new ArrayList<Noeud>();
+		List<Noeud> ListeFermee = new ArrayList<Noeud>();
+		Noeud NoeudEnCours = new Noeud(PointDepart, null, 0, SaisirDistance(PointDepart, Objectif));
+		ListeOuverte.add(NoeudEnCours);
+
+		while (ListeOuverte.size() > 0) {
+
+			Collections.sort(ListeOuverte, TrieurDeNoeud);
+			NoeudEnCours = ListeOuverte.get(0);
+
+			if (NoeudEnCours.Tuile.equals(Objectif)) {
+
+				List<Noeud> Chemin = new ArrayList<Noeud>();
+
+				while (NoeudEnCours.Parent != null) {
+					Chemin.add(NoeudEnCours);
+					NoeudEnCours = NoeudEnCours.Parent;
+				}
+				System.out.println(ListeOuverte.size());
+				ListeOuverte.clear();
+				ListeFermee.clear();
+
+				return Chemin;
+
+			}
+			ListeOuverte.remove(NoeudEnCours);
+
+			ListeFermee.add(NoeudEnCours);
+
+			for (int i = 0; i < 9; i++) {
+				if (i == 4) continue;
+				System.out.println(i);
+				System.out.println(ListeOuverte.size());
+				int xEnCours = NoeudEnCours.Tuile.SaisirX();
+				int yEnCours = NoeudEnCours.Tuile.SaisirY();
+				int xi = (i % 3) - 1;
+				int yi = (i / 3) - 1;
+				Tuile Vers = SaisirTuileHUB(xEnCours + xi, yEnCours + yi);
+				if (Vers == null) continue;
+				if (Vers.Solide()) continue;
+				Vecteur2i v = new Vecteur2i(xEnCours + xi, yEnCours + yi);
+				double gCout = NoeudEnCours.gCout + (SaisirDistance(NoeudEnCours.Tuile, v) == 1 ? 1 : 0.95);
+				double hCout = SaisirDistance(v, Objectif);
+				Noeud noeud = new Noeud(v, NoeudEnCours, gCout, hCout);
+				if (vecDansListe(ListeFermee, v) && gCout >= noeud.gCout) continue;
+				if (!vecDansListe(ListeOuverte, v) || gCout < noeud.gCout) ListeOuverte.add(noeud);
+			}
+		}
+		ListeFermee.clear();
+		return null;
+	}
+
+	private boolean vecDansListe(List<Noeud> Liste, Vecteur2i Vecteur) {
+		for (Noeud n : Liste) {
+			if (n.Tuile.equals(Vecteur)) return true;
+
+		}
+		return false;
+	}
+
+	private double SaisirDistance(Vecteur2i PointDepart, Vecteur2i Objectif) {
+		double DistanceX = PointDepart.SaisirX() - Objectif.SaisirX();
+		double DistanceY = PointDepart.SaisirY() - Objectif.SaisirY();
+		double Distance = Math.sqrt((DistanceX * DistanceX) + (DistanceY * DistanceY));
+		return Distance;
+	}
+
+	 */
+    public Tile getLevelTiles(int x, int y) {
+        if (x < 0 || y < 0 || x >= widthLevelStart || y >= heightLevelStart) return Tile.tile_Void;
+
+        if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_GRASS) return Tile.tile_Grass;
+        if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_ROCK) return Tile.tile_Void;
 	 		/*
 	 		if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBGazon3) return Tuile.HUBGazon3;
 	 		if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBGazon4) return Tuile.HUBGazon4;
@@ -222,79 +292,9 @@ public class Level {
 		  	if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBPatio39) return Tuile.HUBPatio39;
 		  	if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBPatio40) return Tuile.HUBPatio40;
 	 		 */
-		  	else return Tile.tile_Rock;
-	}
-	/*
-	public List<Noeud> TrouverChemin(Vecteur2i PointDepart, Vecteur2i Objectif) {
-		List<Noeud> ListeOuverte = new ArrayList<Noeud>();
-		List<Noeud> ListeFermee = new ArrayList<Noeud>();
-		Noeud NoeudEnCours = new Noeud(PointDepart, null, 0, SaisirDistance(PointDepart, Objectif));
-		ListeOuverte.add(NoeudEnCours);
-		
-		while (ListeOuverte.size() > 0) {
-			
-			Collections.sort(ListeOuverte, TrieurDeNoeud);
-			NoeudEnCours = ListeOuverte.get(0);
-			
-			if (NoeudEnCours.Tuile.equals(Objectif)) {
-				
-				List<Noeud> Chemin = new ArrayList<Noeud>();
-			
-				while (NoeudEnCours.Parent != null) {
-					Chemin.add(NoeudEnCours);
-					NoeudEnCours = NoeudEnCours.Parent;
-				}
-				System.out.println(ListeOuverte.size());
-				ListeOuverte.clear();
-				ListeFermee.clear();
-			
-				return Chemin;
-			
-			}
-			ListeOuverte.remove(NoeudEnCours);
-			
-			ListeFermee.add(NoeudEnCours);
-			
-			for (int i = 0; i < 9; i++) {
-				if (i == 4) continue;
-				System.out.println(i);
-				System.out.println(ListeOuverte.size());
-				int xEnCours = NoeudEnCours.Tuile.SaisirX();
-				int yEnCours = NoeudEnCours.Tuile.SaisirY();
-				int xi = (i % 3) - 1;
-				int yi = (i / 3) - 1;
-				Tuile Vers = SaisirTuileHUB(xEnCours + xi, yEnCours + yi);
-				if (Vers == null) continue;
-				if (Vers.Solide()) continue;
-				Vecteur2i v = new Vecteur2i(xEnCours + xi, yEnCours + yi);
-				double gCout = NoeudEnCours.gCout + (SaisirDistance(NoeudEnCours.Tuile, v) == 1 ? 1 : 0.95);
-				double hCout = SaisirDistance(v, Objectif);
-				Noeud noeud = new Noeud(v, NoeudEnCours, gCout, hCout);
-				if (vecDansListe(ListeFermee, v) && gCout >= noeud.gCout) continue;
-				if (!vecDansListe(ListeOuverte, v) || gCout < noeud.gCout) ListeOuverte.add(noeud);
-			}
-		}
-		ListeFermee.clear();
-		return null;
-	}
-	
-	private boolean vecDansListe(List<Noeud> Liste, Vecteur2i Vecteur) {
-		for (Noeud n : Liste) {
-			if (n.Tuile.equals(Vecteur)) return true;
-		
-		}
-		return false;
-	}
-	
-	private double SaisirDistance(Vecteur2i PointDepart, Vecteur2i Objectif) {
-		double DistanceX = PointDepart.SaisirX() - Objectif.SaisirX();
-		double DistanceY = PointDepart.SaisirY() - Objectif.SaisirY();
-		double Distance = Math.sqrt((DistanceX * DistanceX) + (DistanceY * DistanceY));
-		return Distance; 
-	}
-	
-	 */
-	public List <Entite> getEntities(Entite entity, int radius) {
+        else return Tile.tile_Rock;
+    }
+    public List <Entite> getEntities(Entite entity, int radius) {
 		List<Entite> result = new ArrayList<Entite>();
 		int xCentralEntity = (int) entity.saisirXActuelle();
 		int yCentralEntity = (int) entity.saisirYActuelle();

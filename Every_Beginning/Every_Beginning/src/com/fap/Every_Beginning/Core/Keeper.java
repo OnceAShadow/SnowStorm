@@ -17,11 +17,15 @@ public class Keeper {
     private static DrawSlave drawSlave;
 
     public static GameWorld createWorld(String path, GameOn game, JFrame frame, ScreenDisplay screen) {
-        drawSlave = new DrawSlave(game, frame, screen);
         gameWorldPath = path;
         gameWorld = new GameWorld(gameWorldPath);
+        drawSlave = new DrawSlave(game, frame, screen, gameWorld);
 
         return(gameWorld);
+    }
+
+    public static void drawWorld() {
+        drawSlave.drawWorld();
     }
 
     public static void gameTickUp() {
@@ -33,10 +37,6 @@ public class Keeper {
     public static void resetFPS() {
         fps = 0;
         tps = 0;
-    }
-
-    public static void drawWorld() {
-        drawSlave.drawWorld();
     }
 
     public static int getFPS() {
