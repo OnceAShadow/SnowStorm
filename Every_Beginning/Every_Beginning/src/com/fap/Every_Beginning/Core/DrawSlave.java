@@ -5,6 +5,6 @@ public class DrawSlave {
     public GameOn game;
 
     public void drawWorld() {
-
+        game.renderOnScreen();
     }
 }

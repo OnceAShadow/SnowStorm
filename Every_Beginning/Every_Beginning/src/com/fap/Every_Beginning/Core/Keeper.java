@@ -13,9 +13,11 @@ public class Keeper {
     private static String gameWorldPath = "";
     private static DrawSlave drawSlave = new DrawSlave();
 
-    public static GameWorld createWorld(String path) {
+    public static GameWorld createWorld(String path, GameOn game) {
+        drawSlave.game = game;
         gameWorldPath = path;
-        gameWorld = new GameWorld(path);
+        gameWorld = new GameWorld(gameWorldPath);
+
         return(gameWorld);
     }
 
@@ -32,10 +34,6 @@ public class Keeper {
 
     public static void drawWorld() {
         drawSlave.drawWorld();
-    }
-
-    public static void setDrawSlave(GameOn game) {
-        drawSlave.game = game;
     }
 
     public static int getFPS() {

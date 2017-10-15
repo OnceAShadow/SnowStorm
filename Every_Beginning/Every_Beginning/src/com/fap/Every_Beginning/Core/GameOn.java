@@ -10,8 +10,6 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
-import com.fap.Every_Beginning.Graphics.World.GameWorld;
-import com.fap.Every_Beginning.Graphics.World.Level;
 
 public class GameOn extends Canvas implements Runnable {
 
@@ -36,8 +34,7 @@ public class GameOn extends Canvas implements Runnable {
         frame = new JFrame();
         frame.setResizable(false);
 
-        Keeper.createWorld("/LevelStart.png");
-        Keeper.setDrawSlave(this);
+        Keeper.createWorld("/LevelStart.png", this);
     }
 
     public synchronized void startGame() {
@@ -76,9 +73,7 @@ public class GameOn extends Canvas implements Runnable {
             createBufferStrategy(3);
             return;
         }
-
         screen.clear();
-
         //level.renderLevel(16, 16, screen);
 
         for (int i = 0; i < pixelsInFrame.length; i++) {
