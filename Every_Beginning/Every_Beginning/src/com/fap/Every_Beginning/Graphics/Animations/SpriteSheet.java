@@ -6,116 +6,115 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class SpriteSheet {
-	private String Path;
-
+	private String path;
 	public final int DIMENSIONSPRITESHEET;
 	public final int WIDTH_SPRITE, HEIGHT_SPRITE;
-	private int WidthSpriteSheet, HeightSpriteSheet;
-	public int[] PixelsSpriteSheet;
+	private int widthSpriteSheet, heightSpriteSheet;
+	public int[] pixelsSpriteSheet;
 	
 	
 	
-	public static SpriteSheet Tiles_Base = new SpriteSheet("/Textures/SpriteSheets/Tiles/TilesStarterKit.png", 256, 192, 64, 64);
+	public static SpriteSheet tiles_Base = new SpriteSheet("/Textures/SpriteSheets/Tiles/TilesStarterKit.png", 256, 192, 64, 64);
 	
-	public static SpriteSheet Player_Base = new SpriteSheet("/Textures/SpriteSheets/Players/Player_Base/Player_Base.png", 256, 192, 64, 64);
+	public static SpriteSheet player_Base = new SpriteSheet("/Textures/SpriteSheets/Players/Player_Base/Player_Base.png", 256, 192, 64, 64);
 
-	public static SpriteSheet Player_Base_Up = new SpriteSheet(Player_Base, 2, 0, 1, 3, 64, 64);
-	public static SpriteSheet Player_Base_Left = new SpriteSheet(Player_Base, 3, 0, 1, 3, 64, 64);
-	public static SpriteSheet Player_Base_Down = new SpriteSheet(Player_Base, 0, 0, 1, 3, 64, 64);
-	public static SpriteSheet Player_Base_Right = new SpriteSheet(Player_Base, 1, 0, 1, 3, 64, 64);
+	public static SpriteSheet player_Base_Up = new SpriteSheet(player_Base, 2, 0, 1, 3, 64, 64);
+	public static SpriteSheet player_Base_Left = new SpriteSheet(player_Base, 3, 0, 1, 3, 64, 64);
+	public static SpriteSheet player_Base_Down = new SpriteSheet(player_Base, 0, 0, 1, 3, 64, 64);
+	public static SpriteSheet player_Base_Right = new SpriteSheet(player_Base, 1, 0, 1, 3, 64, 64);
 	
-	public static SpriteSheet Zombie_Base = new SpriteSheet("/Textures/SpriteSheets/Mobs/Zombie_Base/Zombie_Base.png", 256, 192, 64, 64);
+	public static SpriteSheet zombie_Base = new SpriteSheet("/Textures/SpriteSheets/Mobs/Zombie_Base/Zombie_Base.png", 256, 192, 64, 64);
 
-	public static SpriteSheet Zombie_Base_Up = new SpriteSheet(Zombie_Base, 2, 0, 1, 3, 64, 64);
-	public static SpriteSheet Zombie_Base_Left = new SpriteSheet(Zombie_Base, 3, 0, 1, 3, 64, 64);
-	public static SpriteSheet Zombie_Base_Down = new SpriteSheet(Zombie_Base, 0, 0, 1, 3, 64, 64);
-	public static SpriteSheet Zombie_Base_Right = new SpriteSheet(Zombie_Base, 1, 0, 1, 3, 64, 64);
+	public static SpriteSheet zombie_Base_Up = new SpriteSheet(zombie_Base, 2, 0, 1, 3, 64, 64);
+	public static SpriteSheet zombie_Base_Left = new SpriteSheet(zombie_Base, 3, 0, 1, 3, 64, 64);
+	public static SpriteSheet zombie_Base_Down = new SpriteSheet(zombie_Base, 0, 0, 1, 3, 64, 64);
+	public static SpriteSheet zombie_Base_Right = new SpriteSheet(zombie_Base, 1, 0, 1, 3, 64, 64);
 	
 		
-	private Sprite[] Sprites;
+	private Sprite[] sprites;
 	
-	public SpriteSheet(SpriteSheet SpSheet, int x, int y, int AmountSpriteWidth, int AmountSpriteHeight, int DimensionSpriteWidth, int DimensionSpriteHeight) {
-		int xx = x * DimensionSpriteWidth;
-		int yy = y * DimensionSpriteHeight;
-		int WidthSprite = AmountSpriteWidth * DimensionSpriteWidth;
-		int HeightSprite = AmountSpriteHeight * DimensionSpriteHeight;
+	public SpriteSheet(SpriteSheet spriteSheet, int x, int y, int amountSpriteWidth, int amountSpriteHeight, int dimensionSpriteWidth, int dimensionSpriteHeight) {
+		int xx = x * dimensionSpriteWidth;
+		int yy = y * dimensionSpriteHeight;
+		int widthSprite = amountSpriteWidth * dimensionSpriteWidth;
+		int heightSprite = amountSpriteHeight * dimensionSpriteHeight;
 		
-		if (AmountSpriteWidth == AmountSpriteHeight) DIMENSIONSPRITESHEET = AmountSpriteWidth;
+		if (amountSpriteWidth == amountSpriteHeight) DIMENSIONSPRITESHEET = amountSpriteWidth;
 		else DIMENSIONSPRITESHEET = -1;
 		
-		WIDTH_SPRITE = WidthSprite;
-		HEIGHT_SPRITE = HeightSprite;
-		PixelsSpriteSheet = new int[WidthSprite * HeightSprite];
+		WIDTH_SPRITE = widthSprite;
+		HEIGHT_SPRITE = heightSprite;
+		pixelsSpriteSheet = new int[widthSprite * heightSprite];
 		
-		for (int y0 = 0; y0 < HeightSprite; y0++) {
+		for (int y0 = 0; y0 < heightSprite; y0++) {
 			int yPosition = yy + y0;
-			for (int x0 = 0; x0 < WidthSprite; x0++) {
+			for (int x0 = 0; x0 < widthSprite; x0++) {
 				int xPosition = xx + x0;
 			
-				PixelsSpriteSheet[x0 + y0 * WidthSprite] = SpSheet.PixelsSpriteSheet[xPosition + yPosition * SpSheet.WIDTH_SPRITE];
+				pixelsSpriteSheet[x0 + y0 * widthSprite] = spriteSheet.pixelsSpriteSheet[xPosition + yPosition * spriteSheet.WIDTH_SPRITE];
 							
 			}
 		}
 	
-		int Frame = 0;
-		Sprites = new Sprite[AmountSpriteWidth * AmountSpriteHeight];
+		int frame = 0;
+		sprites = new Sprite[amountSpriteWidth * amountSpriteHeight];
 	
-		for (int yAbsolu = 0; yAbsolu < AmountSpriteHeight; yAbsolu++) {
-			for (int xAbsolu = 0; xAbsolu < AmountSpriteWidth; xAbsolu++) {
-				int[] PixelsSprite = new int[DimensionSpriteWidth * DimensionSpriteHeight];
-				for (int y1 = 0; y1 < DimensionSpriteHeight; y1++) {
-					for (int x1 = 0; x1 < DimensionSpriteWidth; x1++) {
+		for (int yAbsolu = 0; yAbsolu < amountSpriteHeight; yAbsolu++) {
+			for (int xAbsolu = 0; xAbsolu < amountSpriteWidth; xAbsolu++) {
+				int[] PixelsSprite = new int[dimensionSpriteWidth * dimensionSpriteHeight];
+				for (int y1 = 0; y1 < dimensionSpriteHeight; y1++) {
+					for (int x1 = 0; x1 < dimensionSpriteWidth; x1++) {
 		 
-						PixelsSprite[x1 + y1 * DimensionSpriteWidth] = PixelsSpriteSheet[(x1 + xAbsolu * DimensionSpriteWidth) + (y1 + yAbsolu * DimensionSpriteHeight) * WIDTH_SPRITE];
+						PixelsSprite[x1 + y1 * dimensionSpriteWidth] = pixelsSpriteSheet[(x1 + xAbsolu * dimensionSpriteWidth) + (y1 + yAbsolu * dimensionSpriteHeight) * WIDTH_SPRITE];
 										
 					}
 				}	 
-				Sprite sprite = new Sprite(PixelsSprite, DimensionSpriteWidth, DimensionSpriteHeight);	
-				Sprites[Frame++] = sprite;
+				Sprite sprite = new Sprite(PixelsSprite, dimensionSpriteWidth, dimensionSpriteHeight);	
+				sprites[frame++] = sprite;
 			}
 		}	
 		
 		
 	}
 
-	public SpriteSheet(String Path, int WidthSpriteSheet, int HeightSpriteSheet, int WidthSprite, int HeightSprite) {
-		this.Path = Path;
+	public SpriteSheet(String path, int widthSpriteSheet, int heightSpriteSheet, int widthSprite, int heightSprite) {
+		this.path = path;
 		DIMENSIONSPRITESHEET = - 1;
-		this.WidthSpriteSheet = WidthSpriteSheet;
-		this.HeightSpriteSheet = HeightSpriteSheet;
-		WIDTH_SPRITE = WidthSprite;
-		HEIGHT_SPRITE = HeightSprite;
-		PixelsSpriteSheet = new int[WidthSpriteSheet * HeightSpriteSheet];
-		LoadSpriteSheet();
+		this.widthSpriteSheet = widthSpriteSheet;
+		this.heightSpriteSheet = heightSpriteSheet;
+		WIDTH_SPRITE = widthSprite;
+		HEIGHT_SPRITE = heightSprite;
+		pixelsSpriteSheet = new int[widthSpriteSheet * heightSpriteSheet];
+		loadSpriteSheet();
 	}
 
-	public Sprite[] GetSprites() {
-		return Sprites;
+	public Sprite[] getSprites() {
+		return sprites;
 	}
 
-	public int GetWidthSpriteSheet() {
-		return WidthSpriteSheet;
+	public int getWidthSpriteSheet() {
+		return widthSpriteSheet;
 	}
 	
-	public int GetHeightSpriteSheet() {
-		return HeightSpriteSheet;
+	public int getHeightSpriteSheet() {
+		return heightSpriteSheet;
 	}
 	
-	public int[] GetPixels() {
-		return PixelsSpriteSheet;
+	public int[] getPixels() {
+		return pixelsSpriteSheet;
 	}
 	
-	private void LoadSpriteSheet() {
+	private void loadSpriteSheet() {
 		
 			try {
-				System.out.println("Chargement" + Path);
-				BufferedImage ImageSpriteSheet = ImageIO.read(SpriteSheet.class.getResource(Path));
-				System.out.println("Reussi" + Path);
+				System.out.println("Chargement" + path);
+				BufferedImage imageSpriteSheet = ImageIO.read(SpriteSheet.class.getResource(path));
+				System.out.println("Reussi" + path);
 				
-				WidthSpriteSheet = ImageSpriteSheet.getWidth();
-				HeightSpriteSheet = ImageSpriteSheet.getHeight();
-				PixelsSpriteSheet = new int[WidthSpriteSheet * HeightSpriteSheet];
-				ImageSpriteSheet.getRGB(0, 0, WidthSpriteSheet, HeightSpriteSheet, PixelsSpriteSheet, 0, WidthSpriteSheet);
+				widthSpriteSheet = imageSpriteSheet.getWidth();
+				heightSpriteSheet = imageSpriteSheet.getHeight();
+				pixelsSpriteSheet = new int[widthSpriteSheet * heightSpriteSheet];
+				imageSpriteSheet.getRGB(0, 0, widthSpriteSheet, heightSpriteSheet, pixelsSpriteSheet, 0, widthSpriteSheet);
 			} 	catch (IOException e) {
 					e.printStackTrace();
 				}

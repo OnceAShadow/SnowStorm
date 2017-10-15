@@ -9,70 +9,80 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
+import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
+import com.fap.Every_Beginning.Graphics.World.Level;
+
 public class Game extends Canvas implements Runnable {
 
-	private static int WidthResolution = 800;
-	private static int HeightResolution = 600;
-	private static int WidthFrame = WidthResolution;
-	private static int HeightFrame = HeightResolution;
+	private static int widthResolution = 800;
+	private static int heightResolution = 600;
+	private static int widthFrame = widthResolution;
+	private static int heightFrame = heightResolution;
 	
-	public static String Title = "Every Beginning";
+	public static String title = "Every Beginning";
 
 	private Thread thread;
-	private JFrame Frame;
+	private JFrame frame;
+	private ScreenDisplay screen;
+	private Level level;
 
-	private boolean Running;
+	private boolean running;
 	
-	private BufferedImage ImageInFrame = new BufferedImage(WidthFrame, HeightFrame, BufferedImage.TYPE_INT_RGB);
-	private int[] PixelsInFrame = ((DataBufferInt) ImageInFrame.getRaster().getDataBuffer()).getData();
+	private BufferedImage imageInFrame = new BufferedImage(widthFrame, heightFrame, BufferedImage.TYPE_INT_RGB);
+	private int[] pixelsInFrame = ((DataBufferInt) imageInFrame.getRaster().getDataBuffer()).getData();
 
 	public Game () {
-		Dimension FrameResolution = new Dimension(WidthFrame, HeightFrame);
+		Dimension FrameResolution = new Dimension(widthFrame, heightFrame);
 		setPreferredSize(FrameResolution);
 		
-		Frame = new JFrame();
-		Frame.setResizable(false);
+		
+		screen = new ScreenDisplay(widthResolution, heightResolution);
+		frame = new JFrame();
+		frame.setResizable(false);
+		
+		level = level.castle;
+		
 	}
 	
 	public static void main(String[] args) {
 		Game game = new Game();
-		game.Frame.setTitle(game.Title);
-		game.Frame.add(game);
-		game.Frame.pack();
-		game.Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		game.Frame.setLocationRelativeTo(null);
-		game.Frame.setVisible(true);
+		game.frame.setTitle(game.title);
+		game.frame.add(game);
+		game.frame.pack();
+		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		game.frame.setLocationRelativeTo(null);
+		game.frame.setVisible(true);
 
-		game.Start();
+		game.start();
 	}
 	
-	public synchronized void Start() {
-		Running = true;
-		thread = new Thread(this, "Affichage");
+	public synchronized void start() {
+		running = true;
+		thread = new Thread(this, "Display");
 		thread.start();
 	}
 	
 	public void run() {
-		long Clock1Sec = System.currentTimeMillis();
+		long clock1Sec = System.currentTimeMillis();
 		requestFocus();
 		
-		int FPS = 0;
-		int TPS = 0;
+		int fps = 0;
+		int tps = 0;
 		
-		while(Running) {
+		while(running) {
 			
-			TickGame();
-			RenderOnScreen();
+			tickGame();
+			renderOnScreen();
 
-			TPS++;
-			FPS++;
+			tps++;
+			fps++;
 			
-			if (System.currentTimeMillis() - Clock1Sec > 1000) {
-				Clock1Sec += 1000;
-				Frame.setTitle(Title + "    |     " + "Fps : "
-						+ FPS + " , Tps : " + TPS);
-				FPS = 0;
-				TPS = 0;
+			if (System.currentTimeMillis() - clock1Sec > 1000) {
+				clock1Sec += 1000;
+				frame.setTitle(title + "    |     " + "Fps : "
+						+ fps + " , Tps : " + tps);
+				fps = 0;
+				tps = 0;
 				
 			}
 		}
@@ -80,27 +90,34 @@ public class Game extends Canvas implements Runnable {
 		Stop();
 	}
 
-	public void TickGame() {
+	public void tickGame() {
+		level.tickLevel();
 	}
 	
-	public void RenderOnScreen() {
+	public void renderOnScreen() {
 		BufferStrategy BufferStrategy = getBufferStrategy();
 		if (BufferStrategy == null) {
 			createBufferStrategy(3);
 			return;
 		}
 		
+		level.renderLevel(100, 100, screen);
+		
+		for (int i = 0; i < pixelsInFrame.length; i++) {
+			pixelsInFrame[i] = screen.pixelsScreen[i];
+		}
+		
 		Graphics graphics = BufferStrategy.getDrawGraphics();
 		graphics.setColor(new Color(0xFF00FF));
-		graphics.fillRect(0, 0, WidthFrame, HeightFrame);
+		graphics.fillRect(0, 0, widthFrame, heightFrame);
 
-		graphics.drawImage(ImageInFrame, 0, 0, WidthFrame, HeightFrame, null);
+		graphics.drawImage(imageInFrame, 0, 0, widthFrame, heightFrame, null);
 		graphics.dispose();
 		BufferStrategy.show();
 	}
 	
 	public synchronized void Stop() {
-		Running = false;
+		running = false;
 		try {
 			thread.join();
 		} catch (InterruptedException e) {

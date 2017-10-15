@@ -12,18 +12,19 @@ import com.fap.Every_Beginning.Graphics.World.Tiles.Tile;
 
 public class Level {
 	
-	protected int WidthLevel, HeightLevel;
-	protected final Random ALEATOIRE = new Random();
+	protected int widthLevel, heightLevel;
+	protected final Random RANDOM = new Random();
 	
-	public int WidthLevelStart = 64;
-	public int HeightLevelStart = 64;
-	protected int[] RandomTiles; 
-	protected int[] LevelTiles; 
+	public int widthLevelStart = 64;
+	public int heightLevelStart = 64;
+	protected int[] randomTiles; 
+	protected int[] levelTiles; // = new int[WidthLevelStart*WidthLevelStart] ;
+	
 	public int xStatingPosition = 32;
 	public int yStartingPosition = 32;
-	public static Level World = new Level("/Level/LevelStart.png");
+	public static Level castle = new LevelWorld("/Level/LevelStart.png");
 	
-	private List<Entite> Entities = new ArrayList<Entite>();
+	private List<Entite> entities = new ArrayList<Entite>();
 	/*
 	//private List<Projectile> Projectiles = new ArrayList<Projectile>();
 	//private List<Particule> Particules = new ArrayList<Particule>();
@@ -37,32 +38,35 @@ public class Level {
 		}
 	}; */
 	
-	/*
-	
-
-	public Level(int LargeurNiveau, int HauteurNiveau) {
-		this.LargeurNiveau = LargeurNiveau;
-		this.HauteurNiveau = HauteurNiveau;
-		TuilesAleatoire = new int[LargeurNiveau * HauteurNiveau];
-		GenererNiveauAleatoire();
-	}*/
-
-	public Level(String Path) {
-		LoadLevel(Path);
-		GenerateLevel();
+	public Level(String path) {
 		
-		// AjouterEntite(new GenerateurEntite(26 * 16, 22 *16, GenerateurEntite.TypeEntite.PARTICULE, 6000, this));
+		loadLevel(path);
+		
+		generateLevel();
+
+		//AjouterEntite(new GenerateurEntite(26 * 16, 22 *16, GenerateurEntite.TypeEntite.PARTICULE, 6000, this));
 	}
 
-	protected void LoadLevel(String Path) {
+	public Level(int widthLevel, int heightLevel) {
+		this.widthLevel = widthLevel;
+		this.heightLevel = heightLevel;
+		int[] tuilesAleatoire = new int[widthLevel * heightLevel];
+		genererNiveauAleatoire();
+	}
+
+	private void genererNiveauAleatoire() {
+	}
+
+
+	protected void loadLevel(String path) {
 	}
 	
-	protected void GenerateLevel() {
+	protected void generateLevel() {
 	}
 	
-	public void TickNiveau() {
-		for (int i = 0; i < Entities.size(); i++) {
-			Entities.get(i).TickEntite();
+	public void tickLevel() {
+		for (int i = 0; i < entities.size(); i++) {
+			entities.get(i).tickEntity();
 		}
 	/*	
 		for (int i = 0; i < Projectiles.size(); i++) {
@@ -77,12 +81,12 @@ public class Level {
 			Joueurs.get(i).TickEntite();
 		}
 	*/	
-		RemoveEntity();
+		removeEntity();
 	}
 	
-	private void RemoveEntity() {
-		for (int i = 0; i < Entities.size(); i++) {
-			if (Entities.get(i).IsRemoved()) Entities.remove(i) ;
+	private void removeEntity() {
+		for (int i = 0; i < entities.size(); i++) {
+			if (entities.get(i).isRemoved()) entities.remove(i) ;
 		}
 		/*
 		for (int i = 0; i < Projectiles.size(); i++) {
@@ -102,20 +106,20 @@ public class Level {
 		return Projectiles;
 	}
 */	
-	private void Temps() {	
+	private void time() {	
 	}
 	
-	public boolean CollisionEntiteTuile(int xActuelle, int yActuelle, int DimensionEntite, int xDecallage, int yDecallage) {
-		boolean Solid = false;
+	public boolean collisionEntiteTuile(int xActuelle, int yActuelle, int dimensionEntite, int xDecallage, int yDecallage) {
+		boolean solid = false;
 		for (int c =0; c < 4; c++) {
-			int xTemporaire = (xActuelle - (c % 2) * DimensionEntite + xDecallage) / 16;
-			int yTemporaire = (yActuelle - (c / 2) * DimensionEntite + yDecallage) / 16;
-			if (GetLevelTiles(xTemporaire, yTemporaire).Solid()) Solid = true;
-		}return Solid;
+			int xTemporaire = (xActuelle - (c % 2) * dimensionEntite + xDecallage) / 16;
+			int yTemporaire = (yActuelle - (c / 2) * dimensionEntite + yDecallage) / 16;
+			if (getLevelTiles(xTemporaire, yTemporaire).solid()) solid = true;
+		}return solid;
 	}
 	
-	public void AddEntity(Entite Entity) {
-		Entity.Initialiser(this);
+	public void addEntity(Entite entity) {
+		entity.initialiser(this);
 		/*
 		if (Entite instanceof Particule) {
 			Particules.add((Particule)Entite);
@@ -126,7 +130,7 @@ public class Level {
 		} else {
 		
 		}	*/
-		Entities.add(Entity);
+		entities.add(entity);
 	}
 	/*
 	public List<Joueur> SaisirJoueur() {
@@ -142,10 +146,10 @@ public class Level {
 	}
 	*/	
 	
-	public Tile GetLevelTiles(int x, int y) {
-		if (x < 0 || y < 0 || x >= WidthLevelStart || y >= HeightLevelStart) return Tile.Rock;
+	public Tile getLevelTiles(int x, int y) {
+		if (x < 0 || y < 0 || x >= widthLevelStart || y >= heightLevelStart) return Tile.tile_Rock;
 		
-	 		if (LevelTiles[x + y * WidthLevelStart] == Tile.Color_Grass) return Tile.Grass;
+	 		if (levelTiles[x + y * widthLevelStart] == Tile.COLOR_GRASS) return Tile.tile_Grass;
 	 		/*
 	 		if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBGazon2) return Tuile.HUBGazon2;
 	 		if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBGazon3) return Tuile.HUBGazon3;
@@ -219,7 +223,7 @@ public class Level {
 		  	if (LevelTiles[x + y * LargeurNiveauHUB] == Tuile.Couleur_HUBPatio40) return Tuile.HUBPatio40;
 		  	else 
 		*/
-		return Tile.Grass;
+		return Tile.tile_Grass;
 	}
 	/*
 	public List<Noeud> TrouverChemin(Vecteur2i PointDepart, Vecteur2i Objectif) {
@@ -291,26 +295,26 @@ public class Level {
 	}
 	
 	 */
-	public List <Entite> SaisirEntitees(Entite Entity, int Radius) {
-		List<Entite> Result = new ArrayList<Entite>();
-		int xCentralEntity = (int) Entity.SaisirXActuelle();
-		int yCentralEntity = (int) Entity.SaisirYActuelle();
+	public List <Entite> getEntities(Entite entity, int radius) {
+		List<Entite> result = new ArrayList<Entite>();
+		int xCentralEntity = (int) entity.saisirXActuelle();
+		int yCentralEntity = (int) entity.saisirYActuelle();
 				
-		for (int i = 0; i < Entities.size(); i++) {
-			Entite CurrentEntity = Entities.get(i);
+		for (int i = 0; i < entities.size(); i++) {
+			Entite currentEntity = entities.get(i);
 			
-			if (CurrentEntity.equals(Entity)) continue;
-		//	if (EntiteEnCours instanceof GenerateurEntite) continue;
-		//	if (EntiteEnCours instanceof Particule) continue;
-			int xEntiteEnCours = (int) CurrentEntity.SaisirXActuelle();
-			int yEntiteEnCours = (int) CurrentEntity.SaisirYActuelle();
+			if (currentEntity.equals(entity)) continue;
+		//	if (EntiteEnCours instanceof generateurEntite) continue;
+		//	if (EntiteEnCours instanceof particule) continue;
+			int xEntiteEnCours = (int) currentEntity.saisirXActuelle();
+			int yEntiteEnCours = (int) currentEntity.saisirYActuelle();
 			
-			int DistanceX = Math.abs(xEntiteEnCours - xCentralEntity);
-			int DistanceY = Math.abs(yEntiteEnCours - yCentralEntity);
-			double Distance = Math.sqrt((DistanceX * DistanceX) + (DistanceY * DistanceY));
-			if (Distance <= Radius) Result.add(CurrentEntity);
+			int distanceX = Math.abs(xEntiteEnCours - xCentralEntity);
+			int distanceY = Math.abs(yEntiteEnCours - yCentralEntity);
+			double distance = Math.sqrt((distanceX * distanceX) + (distanceY * distanceY));
+			if (distance <= radius) result.add(currentEntity);
 		}
-		return Result;
+		return result;
 	}
 	/*
 	public List <Joueur> SaisirJoueurs(Entite Entite, int Rayon) {
@@ -348,22 +352,24 @@ public class Level {
 	}
 */
 	
-	public void RenduNiveau(int xDecallage, int yDecallage, ScreenDisplay Screen) {
-		Screen.setOffset(xDecallage, yDecallage);
+	public void renderLevel(int xDecallage, int yDecallage, ScreenDisplay screen) {
 		
-		int x0 = (xDecallage - Screen.WidthTile) / Screen.WidthTile;
-		int x1 = (xDecallage + Screen.WidthScreen + Screen.WidthTile) >> 4;
-		int y0 = (yDecallage - Screen.HeightTile) / Screen.HeightTile;
-		int y1 = (yDecallage + Screen.HeightScreen + Screen.HeightTile) >> 4;
+		System.out.println("ici");
+		screen.setOffset(xDecallage, yDecallage);
+		
+		int x0 = (xDecallage - screen.widthTile) / screen.widthTile;
+		int x1 = (xDecallage + screen.widthScreen + screen.widthTile) >> 4;
+		int y0 = (yDecallage - screen.heightTile) / screen.heightTile;
+		int y1 = (yDecallage + screen.heightScreen + screen.heightTile) >> 4;
 		
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x <x1; x++) {
-				GetLevelTiles(x, y).RenderTile(x, y, Screen);
+				getLevelTiles(x, y).renderTile(x, y, screen);
 			}
 		}
 		
-		for (int i = 0; i < Entities.size(); i++) {
-			Entities.get(i).RenduEntite(Screen);
+		for (int i = 0; i < entities.size(); i++) {
+			entities.get(i).renderEntity(screen);
 		}
 		/*
 		for (int i = 0; i < Projectiles.size(); i++) {

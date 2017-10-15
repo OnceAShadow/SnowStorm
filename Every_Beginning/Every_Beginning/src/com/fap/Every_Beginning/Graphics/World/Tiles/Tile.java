@@ -5,10 +5,10 @@ import com.fap.Every_Beginning.Graphics.Animations.Sprite;
 
 public class Tile {
 	
-		public static Tile Grass = new TileGrass(Sprite.Grass);
-		public static Tile Rock = new TileRock(Sprite.Rock);
+		public static Tile tile_Grass = new TileGrass(Sprite.spriteGrass);
+		public static Tile tile_Rock = new TileRock(Sprite.spriteRock);
 
-		public static final int  Color_Grass = 0xff27E109;
+		public static final int  COLOR_GRASS = 0xff27E109;
 		/*
 		public static Tuile HUBGazon3 = new TuileHUBGazon(Sprite.HUBGazon3);
 		public static Tuile HUBGazon4 = new TuileHUBGazon(Sprite.HUBGazon4);
@@ -158,30 +158,18 @@ public class Tile {
 		
 		*/
 		
-		
 		public int x, y;
 		public Sprite sprite;
 		
-
-		
-		
-		public Tile(Sprite Sprite) {
-			this.sprite = Sprite;
-			
+		public Tile(Sprite sprite) {
+			this.sprite = sprite;
 		}
 		
-		
-		public void RenderTile(int x, int y, ScreenDisplay Screen) {
-			
+		public void renderTile(int x, int y, ScreenDisplay screen) {
 		}
 		
-		
-		public boolean Solid() {
+		public boolean solid() {
 			return false;
-			
 		}
 		
-		
-		
-
 }

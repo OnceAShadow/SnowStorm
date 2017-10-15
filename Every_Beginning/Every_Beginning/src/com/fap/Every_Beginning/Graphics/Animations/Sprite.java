@@ -5,80 +5,80 @@ public class Sprite {
 
 	public final int DIMENSIONSPRITE;
 	private int x, y;
-	public int WidthSprite, HeightSprite;
-	public int[] PixelsSprite;
+	public int widthSprite, heightSprite;
+	public int[] pixelsSprite;
 	protected SpriteSheet spriteSheet;
 	
 	// SpritesMateriel
-	public static Sprite TuileVide = new Sprite(64, 64, 0x5D3F97);
+	public static Sprite tileVoid = new Sprite(64, 64, 0x5D3F97);
 	
 	
-	public static Sprite Grass = new Sprite(64, 64, 0, 0, SpriteSheet.Tiles_Base);
-	public static Sprite Rock = new Sprite(64, 64, 1, 0, SpriteSheet.Tiles_Base);
-	public static Sprite Water = new Sprite(64, 64, 2, 0, SpriteSheet.Tiles_Base);
-	public static Sprite Sand = new Sprite(64, 64, 3, 0, SpriteSheet.Tiles_Base);
-	public static Sprite WoodFloor = new Sprite(64, 64, 0, 1, SpriteSheet.Tiles_Base);
-	public static Sprite WoodWall = new Sprite(64, 64, 1, 1, SpriteSheet.Tiles_Base);
-	public static Sprite RockWall = new Sprite(64, 64, 2, 1, SpriteSheet.Tiles_Base);
-	public static Sprite RockFloor = new Sprite(64, 64, 3, 1, SpriteSheet.Tiles_Base);
-	public static Sprite Ice = new Sprite(64, 64, 0, 2, SpriteSheet.Tiles_Base);
-	public static Sprite Snow = new Sprite(64, 64, 1, 2, SpriteSheet.Tiles_Base);
-	public static Sprite Lava = new Sprite(64, 64, 2, 2, SpriteSheet.Tiles_Base);
-	public static Sprite Soil = new Sprite(64, 64, 3, 2, SpriteSheet.Tiles_Base);
+	public static Sprite spriteGrass = new Sprite(64, 64, 0, 0, SpriteSheet.tiles_Base);
+	public static Sprite spriteRock = new Sprite(64, 64, 1, 0, SpriteSheet.tiles_Base);
+	public static Sprite spriteWater = new Sprite(64, 64, 2, 0, SpriteSheet.tiles_Base);
+	public static Sprite spriteSand = new Sprite(64, 64, 3, 0, SpriteSheet.tiles_Base);
+	public static Sprite spriteWoodFloor = new Sprite(64, 64, 0, 1, SpriteSheet.tiles_Base);
+	public static Sprite spriteWoodWall = new Sprite(64, 64, 1, 1, SpriteSheet.tiles_Base);
+	public static Sprite spriteRockWall = new Sprite(64, 64, 2, 1, SpriteSheet.tiles_Base);
+	public static Sprite spriteRockFloor = new Sprite(64, 64, 3, 1, SpriteSheet.tiles_Base);
+	public static Sprite spriteIce = new Sprite(64, 64, 0, 2, SpriteSheet.tiles_Base);
+	public static Sprite spriteSnow = new Sprite(64, 64, 1, 2, SpriteSheet.tiles_Base);
+	public static Sprite spriteLava = new Sprite(64, 64, 2, 2, SpriteSheet.tiles_Base);
+	public static Sprite spriteSoil = new Sprite(64, 64, 3, 2, SpriteSheet.tiles_Base);
 	
 
 	// Sprites Joueur
 	
-	public static Sprite Player_Base = new Sprite(64, 64, 0, 0, SpriteSheet.Player_Base_Down);
+	public static Sprite spritePlayer_Base = new Sprite(64, 64, 0, 0, SpriteSheet.player_Base_Down);
 	
 	// Sprites Monstres
-	public static Sprite Zombie_Base = new Sprite(64, 64, 0, 0, SpriteSheet.Zombie_Base_Down);
+	public static Sprite spriteZombie_Base = new Sprite(64, 64, 0, 0, SpriteSheet.zombie_Base_Down);
 	
 	
 	// Sprites Particules	
-	public static Sprite Particules1 = new Sprite(3, 3, 0xFFAAAAAA);
+	public static Sprite spriteParticules1 = new Sprite(3, 3, 0xFFAAAAAA);
 	
 	
-	protected Sprite(SpriteSheet SpriteSheet, int LargeurSprite, int HauteurSprite) {
+	protected Sprite(SpriteSheet spriteSheet, int widthSprite, int heightSprite) {
 		
-		this.WidthSprite = LargeurSprite;
-		this.HeightSprite = HauteurSprite;
-		this.spriteSheet = SpriteSheet;
+		this.widthSprite = widthSprite;
+		this.heightSprite = heightSprite;
+		this.spriteSheet = spriteSheet;
 	
 		// cest la meme syntaxe que : DIMENSIONSPRITE = (LargeurSprite == HauteurSprite) ? LargeurSprite : -1;
-		if (LargeurSprite == HauteurSprite) DIMENSIONSPRITE = LargeurSprite;
+		if (widthSprite == heightSprite) DIMENSIONSPRITE = widthSprite;
 		else DIMENSIONSPRITE = -1;	
 	}
 		
-	public Sprite(int WidthSprite, int HeightSprite, int x, int y, SpriteSheet spriteSheet) {
-		if (WidthSprite == HeightSprite) DIMENSIONSPRITE = WidthSprite;
+	public Sprite(int widthSprite, int heightSprite, int x, int y, SpriteSheet spriteSheet) {
+		if (widthSprite == heightSprite) DIMENSIONSPRITE = widthSprite;
 		else DIMENSIONSPRITE = -1;	
-		this.WidthSprite = WidthSprite;
-		this.HeightSprite = HeightSprite;
-		PixelsSprite = new int[WidthSprite * HeightSprite];
-		this.x = x * WidthSprite;
-		this.y = y * HeightSprite;
+		this.widthSprite = widthSprite;
+		this.heightSprite = heightSprite;
+		pixelsSprite = new int[widthSprite * heightSprite];
+		this.x = x * widthSprite;
+		this.y = y * heightSprite;
 		this.spriteSheet = spriteSheet;
-		LoadSprite();		
+		loadSprite();		
 	}
 
 	
-	public Sprite(int WidthSprite, int HeightSprite, int Color) {
-		if (WidthSprite == HeightSprite) DIMENSIONSPRITE = WidthSprite;
+	public Sprite(int widthSprite, int heightSprite, int color) {
+		if (widthSprite == heightSprite) DIMENSIONSPRITE = widthSprite;
 		else DIMENSIONSPRITE = -1;	
-		this.WidthSprite = WidthSprite;
-		this.HeightSprite = HeightSprite;
-		PixelsSprite = new int[WidthSprite * HeightSprite];
-		SetColor(Color);
+		this.widthSprite = widthSprite;
+		this.heightSprite = heightSprite;
+		pixelsSprite = new int[widthSprite * heightSprite];
+		setColor(color);
 	}
-	public Sprite(int[] PixelsSprite, int LargeurSprite, int HauteurSprite) {
-		if (LargeurSprite == HauteurSprite) DIMENSIONSPRITE = LargeurSprite;
+	public Sprite(int[] pixelsSprite, int widthSprite, int heightSprite) {
+		if (widthSprite == heightSprite) DIMENSIONSPRITE = widthSprite;
 		else DIMENSIONSPRITE = -1;
-		this.WidthSprite = LargeurSprite;
-		this.HeightSprite = HauteurSprite;
-		this.PixelsSprite = new int[PixelsSprite.length];
-		for (int i = 0; i < PixelsSprite.length; i++) {
-			this.PixelsSprite[i] = PixelsSprite[i];
+		this.widthSprite = widthSprite;
+		this.heightSprite = heightSprite;
+		this.pixelsSprite = new int[pixelsSprite.length];
+		for (int i = 0; i < pixelsSprite.length; i++) {
+			this.pixelsSprite[i] = pixelsSprite[i];
 		}			
 	}
 	
@@ -142,48 +142,48 @@ public class Sprite {
 	/*
 	 */
 	
-	public static Sprite[] Separer(SpriteSheet Sheet) {
-		int QuantiteSprite = ((Sheet.GetWidthSpriteSheet() * Sheet.GetHeightSpriteSheet()) / (Sheet.WIDTH_SPRITE * Sheet.HEIGHT_SPRITE));
-		Sprite[] Sprites = new Sprite[QuantiteSprite];
-		int SpriteEnCours = 0;
-		int[] PixelsEnCours = new int[Sheet.WIDTH_SPRITE * Sheet.HEIGHT_SPRITE];
+	public static Sprite[] Split(SpriteSheet sheet) {
+		int amountOfSprite = ((sheet.getWidthSpriteSheet() * sheet.getHeightSpriteSheet()) / (sheet.WIDTH_SPRITE * sheet.HEIGHT_SPRITE));
+		Sprite[] sprites = new Sprite[amountOfSprite];
+		int currentSprite = 0;
+		int[] currentPixels = new int[sheet.WIDTH_SPRITE * sheet.HEIGHT_SPRITE];
 		
-		for (int yPosition = 0; yPosition < Sheet.GetHeightSpriteSheet() / Sheet.HEIGHT_SPRITE; yPosition++) {
-			for (int xPosition = 0; xPosition < Sheet.GetWidthSpriteSheet() / Sheet.WIDTH_SPRITE; xPosition++) {
+		for (int yPosition = 0; yPosition < sheet.getHeightSpriteSheet() / sheet.HEIGHT_SPRITE; yPosition++) {
+			for (int xPosition = 0; xPosition < sheet.getWidthSpriteSheet() / sheet.WIDTH_SPRITE; xPosition++) {
 				
-				for (int yEnCours = 0; yEnCours < Sheet.HEIGHT_SPRITE; yEnCours++){
-					for (int xEnCours = 0; xEnCours < Sheet.WIDTH_SPRITE; xEnCours++){
-						int xDecallage = (xEnCours + xPosition * Sheet.WIDTH_SPRITE);
-						int yDecallage = (yEnCours + yPosition * Sheet.HEIGHT_SPRITE);
-						PixelsEnCours[xEnCours + yEnCours * Sheet.WIDTH_SPRITE] = Sheet.GetPixels()[xDecallage + yDecallage * Sheet.GetWidthSpriteSheet()];				
+				for (int currentY = 0; currentY < sheet.HEIGHT_SPRITE; currentY++){
+					for (int currentX = 0; currentX < sheet.WIDTH_SPRITE; currentX++){
+						int xDecallage = (currentX + xPosition * sheet.WIDTH_SPRITE);
+						int yDecallage = (currentY + yPosition * sheet.HEIGHT_SPRITE);
+						currentPixels[currentX + currentY * sheet.WIDTH_SPRITE] = sheet.getPixels()[xDecallage + yDecallage * sheet.getWidthSpriteSheet()];				
 					}
 				}
 				
-				Sprites[SpriteEnCours] = new Sprite(PixelsEnCours, Sheet.WIDTH_SPRITE, Sheet.HEIGHT_SPRITE);
-				SpriteEnCours++;
+				sprites[currentSprite] = new Sprite(currentPixels, sheet.WIDTH_SPRITE, sheet.HEIGHT_SPRITE);
+				currentSprite++;
 			}
 		}	
-		return Sprites;
+		return sprites;
 	}
 
-	private void SetColor(int Color) {
-		for(int i = 0; i < WidthSprite * HeightSprite; i++) {
-			PixelsSprite[i] = Color;
+	private void setColor(int color) {
+		for(int i = 0; i < widthSprite * heightSprite; i++) {
+			pixelsSprite[i] = color;
 		}
 	}
 	
-	public int GetWidthSprite() {
-		return WidthSprite;
+	public int getWidthSprite() {
+		return widthSprite;
 	}
 	
-	public int GetHeightSprite() {
-		return HeightSprite;
+	public int getHeightSprite() {
+		return heightSprite;
 	}
 	
-	private void LoadSprite() {
-		for (int y = 0; y < WidthSprite; y++) {
-			for (int x =0; x < WidthSprite; x++) {
-				PixelsSprite[x + y * WidthSprite] = spriteSheet.PixelsSpriteSheet[(x + this.x) + (y + this.y) * spriteSheet.WIDTH_SPRITE];
+	private void loadSprite() {
+		for (int y = 0; y < widthSprite; y++) {
+			for (int x =0; x < widthSprite; x++) {
+				pixelsSprite[x + y * widthSprite] = spriteSheet.pixelsSpriteSheet[(x + this.x) + (y + this.y) * spriteSheet.WIDTH_SPRITE];
 				
 			}
 		}

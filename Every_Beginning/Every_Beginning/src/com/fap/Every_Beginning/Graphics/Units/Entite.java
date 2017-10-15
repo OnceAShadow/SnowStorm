@@ -6,48 +6,48 @@ import com.fap.Every_Beginning.Graphics.World.Level;
 
 public class Entite {
 
-	protected double xActuelle, yActuelle;
-	private boolean IsRemoved = false;
+	protected double currentX, currentY;
+	private boolean isRemoved = false;
 	protected Level level;
-	protected Sprite spriteEntite;
+	protected Sprite spriteEntity;
 	
 	public Entite() {
 	}
 	
-	public Entite(int xPosition, int yPosition, Sprite Sprite) {
-		this.xActuelle = xPosition;
-		this.yActuelle = yPosition;
-		this.spriteEntite = Sprite;
+	public Entite(int xPosition, int yPosition, Sprite sprite) {
+		this.currentX = xPosition;
+		this.currentY = yPosition;
+		this.spriteEntity = sprite;
 	}
 	
-	public void TickEntite() {
+	public void tickEntity() {
 	}
 	
-	public void RenduEntite(ScreenDisplay Screen) {
-		if (spriteEntite != null) Screen.RenduSprite((int) xActuelle, (int) yActuelle, spriteEntite, true);
+	public void renderEntity(ScreenDisplay screen) {
+		if (spriteEntity != null) screen.renderSprite((int) currentX, (int) currentY, spriteEntity, true);
 	}
 	
-	public void Retirer() {
-		IsRemoved = true;
+	public void retirer() {
+		isRemoved = true;
 	}
 	
-	public Sprite SaisirSprite() {
-		return spriteEntite;
+	public Sprite saisirSprite() {
+		return spriteEntity;
 	}
 	
-	public double SaisirXActuelle() {
-		return xActuelle;
+	public double saisirXActuelle() {
+		return currentX;
 	}
 	
-	public double SaisirYActuelle() {
-		return yActuelle;
+	public double saisirYActuelle() {
+		return currentY;
 	}
 
-	public boolean IsRemoved() {
-		return IsRemoved;
+	public boolean isRemoved() {
+		return isRemoved;
 	}
 	
-	public void Initialiser(Level Level) {
-		this.level = Level;
+	public void initialiser(Level level) {
+		this.level = level;
 	}
 }

@@ -6,29 +6,29 @@ import com.fap.Every_Beginning.Graphics.World.Tiles.Tile;
 
 public class ScreenDisplay {
 
-    public int WidthScreen, HeightScreen;
+    public int widthScreen, heightScreen;
     public int xOffset, yOffset;
-    public int[] PixelsScreen;
+    public int[] pixelsScreen;
+    public int widthTile = 64;
+    public int heightTile = 64;
 //    public int LargeurNiveau = 8;
 //    public int HauteurNiveau = 8;
 //    public int QuantiteTuilesNiveau = LargeurNiveau * HauteurNiveau;
-    public int WidthTile = 64;
-    public int HeightTile = 64;
 //    public int PlageWidthTile = LargeurNiveau - 1;
 //   public int PlageHeightTile = HauteurNiveau - 1;
 
 
-//    private final int ALPHA_COULEUR1 = 0xFFFF00FF;
-//    private final int ALPHA_COULEUR2 = 0xff7f007f;
+    private final int ALPHA_COULEUR1 = 0xFFFF00FF;
+    private final int ALPHA_COULEUR2 = 0xff7f007f;
 
     //public int[] Tuiles = new int[LargeurNiveau * HauteurNiveau];
     //private Random Aleatoire = new Random();
 
-    public ScreenDisplay(int WidthScreen, int HeightScreen) {
-        this.WidthScreen = WidthScreen;
-        this.HeightScreen = HeightScreen;
+    public ScreenDisplay(int widthScreen, int heightScreen) {
+        this.widthScreen = widthScreen;
+        this.heightScreen = heightScreen;
 
-        PixelsScreen = new int[WidthScreen * HeightScreen];
+        pixelsScreen = new int[widthScreen * heightScreen];
 
 
    /*     for (int i = 0; i < QuantiteTuilesNiveau; i++) {
@@ -36,30 +36,30 @@ public class ScreenDisplay {
         }*/
     }
 
-    public void Liberer() {
-        for (int i = 0; i < PixelsScreen.length; i++) {
-            PixelsScreen[i] = 0;
+    public void clear() {
+        for (int i = 0; i < pixelsScreen.length; i++) {
+            pixelsScreen[i] = 0;
         }
     }
 
-    public void RenduEcran(int xOffset, int yOffset) {
+    public void renderScreen(int xOffset, int yOffset) {
   
     }
 
-    public void RenduSpriteSheet(int xPosition, int yPosition, SpriteSheet SpriteSheet, boolean Fixee) {
-//        if (Fixee) {
-//            xPosition -= xDecallage;
-//            yPosition -= yDecallage;
-//        }
-//
-//        for (int y = 0; y < SpriteSheet.HAUTEUR_SPRITE; y++) {
-//            int yAbsolu = y + yPosition;
-//            for (int x = 0; x < SpriteSheet.LARGEUR_SPRITE; x++) {
-//                int xAbsolu = x + xPosition;
-//                if (xAbsolu < 0 || xAbsolu >=  LargeurEcran || yAbsolu < 0 || yAbsolu >= HauteurEcran);
-//                PixelsEcran[xAbsolu + yAbsolu * LargeurEcran] = SpriteSheet.PixelsSpriteSheet[x + y * SpriteSheet.LARGEUR_SPRITE];
-//            }
-//        }
+    public void renderSpriteSheet(int xPosition, int yPosition, SpriteSheet spriteSheet, boolean fixed) {
+        if (fixed) {
+            xPosition -= xOffset;
+            yPosition -= yOffset;
+        }
+
+        for (int y = 0; y < spriteSheet.HEIGHT_SPRITE; y++) {
+            int yAbsolu = y + yPosition;
+            for (int x = 0; x < spriteSheet.WIDTH_SPRITE; x++) {
+                int xAbsolu = x + xPosition;
+                if (xAbsolu < 0 || xAbsolu >=  widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen);
+                pixelsScreen[xAbsolu + yAbsolu * widthScreen] = spriteSheet.pixelsSpriteSheet[x + y * spriteSheet.WIDTH_SPRITE];
+           }
+        }
     }
 
     public void RenduTexte(int xPosition, int yPosition, Sprite Sprite, boolean Fixee, int Couleur) {
@@ -81,38 +81,38 @@ public class ScreenDisplay {
 //        }
     }
 
-    public void RenduSprite(int xPosition, int yPosition, Sprite Sprite, boolean Fixee) {
-//        if (Fixee) {
-//            xPosition -= xDecallage;
-//            yPosition -= yDecallage;
-//        }
-//
-//        for (int y = 0; y < Sprite.SaisirHauteurSprite(); y++) {
-//            int yAbsolu = y + yPosition;
-//            for (int x = 0; x < Sprite.SaisirLargeurSprite(); x++) {
-//                int xAbsolu = x + xPosition;
-//                if (xAbsolu < 0 || xAbsolu >=  LargeurEcran || yAbsolu < 0 || yAbsolu >= HauteurEcran) continue;
-//                int Couleur =  Sprite.PixelsSprite[x + y * Sprite.SaisirLargeurSprite()];
-//                if (Couleur  != ALPHA_COULEUR1 && Couleur  != ALPHA_COULEUR2) {
-//                    PixelsEcran[xAbsolu + yAbsolu * LargeurEcran] = Couleur;
-//                }
-//            }
-//        }
+    public void renderSprite(int xPosition, int yPosition, Sprite sprite, boolean fixed) {
+        if (fixed) {
+            xPosition -= xOffset;
+            yPosition -= yOffset;
+        }
+
+        for (int y = 0; y < sprite.getHeightSprite(); y++) {
+           int yAbsolu = y + yPosition;
+            for (int x = 0; x < sprite.getWidthSprite(); x++) {
+                int xAbsolu = x + xPosition;
+               if (xAbsolu < 0 || xAbsolu >=  widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen) continue;
+                int color =  sprite.pixelsSprite[x + y * sprite.getWidthSprite()];
+                if (color  != ALPHA_COULEUR1 && color  != ALPHA_COULEUR2) {
+                	pixelsScreen[xAbsolu + yAbsolu * widthScreen] = color;
+                }
+            }
+        }
     }
 
-   public void RenderTile(int xPosition, int yPosition, Tile Tile) {
+   public void renderTile(int xPosition, int yPosition, Tile tile) {
        xPosition -= xOffset;
        yPosition -= yOffset;
 
-       for (int y = 0; y < Tile.sprite.DIMENSIONSPRITE; y++) {
+       for (int y = 0; y < tile.sprite.heightSprite; y++) {
             int yAbsolu = y + yPosition;
 
-            for (int x = 0; x < Tile.sprite.DIMENSIONSPRITE; x++) {
+            for (int x = 0; x < tile.sprite.widthSprite; x++) {
                 int xAbsolu = x + xPosition;
-                if (xAbsolu < - 16 || xAbsolu >= WidthScreen || yAbsolu < 0 || yAbsolu >= HeightScreen) break;
+                if (xAbsolu < - 16 || xAbsolu >= widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen) break;
                 if (xAbsolu < 0) xAbsolu = 0;
 
-                PixelsScreen[xAbsolu + yAbsolu * WidthScreen] = Tile.sprite.PixelsSprite[x + y * Tile.sprite.DIMENSIONSPRITE];
+                pixelsScreen[xAbsolu + yAbsolu * widthScreen] = tile.sprite.pixelsSprite[x + y * tile.sprite.widthSprite];
            }
         }
    }
@@ -141,19 +141,19 @@ public class ScreenDisplay {
 //        }
 //    }
 
-    public void RenduCreature(int xPosition, int yPosition, Sprite Sprite) {
+    public void RenduCreature(int xPosition, int yPosition, Sprite sprite) {
 //        xPosition -= xDecallage;
 //        yPosition -= yDecallage;
 //
-//        for (int y = 0; y < Sprite.SaisirHauteurSprite(); y++) {
+//        for (int y = 0; y < sprite.SaisirHauteurSprite(); y++) {
 //            int yAbsolu = y + yPosition;
 //
-//            for (int x = 0; x < Sprite.SaisirLargeurSprite(); x++) {
+//            for (int x = 0; x < sprite.SaisirLargeurSprite(); x++) {
 //                int xAbsolu = x + xPosition;
-//                if (xAbsolu < - Sprite.SaisirLargeurSprite() || xAbsolu >= LargeurEcran || yAbsolu < 0 || yAbsolu >= HauteurEcran) break;
+//                if (xAbsolu < - sprite.SaisirLargeurSprite() || xAbsolu >= LargeurEcran || yAbsolu < 0 || yAbsolu >= HauteurEcran) break;
 //                if (xAbsolu < 0) xAbsolu = 0;
 //
-//                int Couleur = Sprite.PixelsSprite[x + y * Sprite.SaisirLargeurSprite()];
+//                int Couleur = sprite.PixelsSprite[x + y * sprite.SaisirLargeurSprite()];
 //                if (Couleur  != ALPHA_COULEUR1) {
 //                    PixelsEcran[xAbsolu + yAbsolu * LargeurEcran] = Couleur;
 //                }
@@ -188,25 +188,25 @@ public class ScreenDisplay {
         this.yOffset = yOffset;
     }
 
-    public void DessinerRectangle(int xPosition, int yPosition, int LargeurDebug, int HauteurDebug, int Couleur, boolean Fixee) {
-        if (Fixee) {
+    public void writeRectangle(int xPosition, int yPosition, int widthDebug, int heightDebug, int color, boolean fixed) {
+        if (fixed) {
             xPosition -= xOffset;
             yPosition -= yOffset;
         }
 
-        for (int x = xPosition; x < xPosition + LargeurDebug; x++) {
-            if (x >= this.WidthScreen || x < 0 || yPosition >= this.HeightScreen) continue;
-            if (yPosition > 0) PixelsScreen[x + yPosition * this.WidthScreen] = Couleur;
-            if (yPosition + HauteurDebug >= this.HeightScreen) continue;
-            if (yPosition + HauteurDebug > 0) PixelsScreen[x + (yPosition + HauteurDebug) * this.WidthScreen] = Couleur;
+        for (int x = xPosition; x < xPosition + widthDebug; x++) {
+            if (x >= this.widthScreen || x < 0 || yPosition >= this.heightScreen) continue;
+            if (yPosition > 0) pixelsScreen[x + yPosition * this.widthScreen] = color;
+            if (yPosition + heightDebug >= this.heightScreen) continue;
+            if (yPosition + heightDebug > 0) pixelsScreen[x + (yPosition + heightDebug) * this.widthScreen] = color;
 
         }
 
-        for (int y = yPosition; y <= yPosition + HauteurDebug; y++) {
-            if (xPosition >= this.WidthScreen || y < 0 || y >= this.HeightScreen) continue;
-            if (xPosition > 0) PixelsScreen[xPosition + y * this.WidthScreen] = Couleur;
-            if (xPosition + LargeurDebug >= this.WidthScreen) continue;
-            if (xPosition + LargeurDebug > 0) PixelsScreen[(xPosition + LargeurDebug) + y * this.WidthScreen] = Couleur;
+        for (int y = yPosition; y <= yPosition + heightDebug; y++) {
+            if (xPosition >= this.widthScreen || y < 0 || y >= this.heightScreen) continue;
+            if (xPosition > 0) pixelsScreen[xPosition + y * this.widthScreen] = color;
+            if (xPosition + widthDebug >= this.widthScreen) continue;
+            if (xPosition + widthDebug > 0) pixelsScreen[(xPosition + widthDebug) + y * this.widthScreen] = color;
 
         }
     }
