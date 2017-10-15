@@ -31,8 +31,10 @@ public class Game extends Canvas implements Runnable {
 	private BufferedImage imageInFrame = new BufferedImage(widthFrame, heightFrame, BufferedImage.TYPE_INT_RGB);
 	private int[] pixelsInFrame = ((DataBufferInt) imageInFrame.getRaster().getDataBuffer()).getData();
 
+	
 	public static void main(String[] args) {
 		Game game = new Game();
+		game.frame.setResizable(false);
 		game.frame.setTitle(game.title);
 		game.frame.add(game);
 		game.frame.pack();
@@ -89,7 +91,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void tickGame() {
-		level.tickLevel();
+		//level.tickLevel();
 	}
 	
 	public void renderOnScreen() {
@@ -99,7 +101,7 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 		
-		level.renderLevel(100, 100, screen);
+		//level.renderLevel(100, 100, screen);
 		
 		for (int i = 0; i < pixelsInFrame.length; i++) {
 			pixelsInFrame[i] = screen.pixelsScreen[i];

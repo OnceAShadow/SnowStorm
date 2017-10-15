@@ -2,6 +2,7 @@ package com.fap.Every_Beginning.Graphics.World;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 
@@ -15,14 +16,18 @@ public class LevelWorld extends Level {
 		try {
 			LevelWorld.class.getResource(path);
 			System.out.println(path);
-	
-			BufferedImage frameInScreens = ImageIO.read(LevelWorld.class.getResource(path));
 			
-			int L = widthLevel = frameInScreens.getWidth();
-			int H = heightLevel = frameInScreens.getHeight();;
+			URL url = this.getClass().getResource(path);
+			System.out.println(url);
+
+			BufferedImage frameInScreens = ImageIO.read(url.openStream());
+			
+			int w = widthLevel = frameInScreens.getWidth();
+			int h = heightLevel = frameInScreens.getHeight();;
 			levelTiles = new int[widthLevel * heightLevel];
-			frameInScreens.getRGB(0, 0, L, H, levelTiles, 0, widthLevel);
-		} catch (IOException e) {
+
+			frameInScreens.getRGB(0, 0, w, h, levelTiles, 0, widthLevel);
+		} catch (IOException e) { 
 			System.out.println("penis");
 		}
 		
