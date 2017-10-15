@@ -358,13 +358,13 @@ public class Level {
 		screen.setOffset(xDecallage, yDecallage);
 		
 		int x0 = (xDecallage - screen.widthTile) / screen.widthTile;
-		int x1 = (xDecallage + screen.widthScreen + screen.widthTile) / 16 ;
+		int x1 = (xDecallage + screen.widthScreen + screen.widthTile) / 64 ;
 		int y0 = (yDecallage - screen.heightTile) / screen.heightTile;
-		int y1 = (yDecallage + screen.heightScreen + screen.heightTile) / 16;
+		int y1 = (yDecallage + screen.heightScreen + screen.heightTile) / 64 ;
 		
 		for (int y = y0; y < y1; y++) {
-			for (int x = x0; x <x1; x++) {
-				getLevelTiles(x, y).renderTile(x, y, screen);
+			for (int x = x0; x < x1; x++) {
+				Tile.tile_Grass.renderTile(x, y, screen);
 			}
 		}
 		for (int i = 0; i < entities.size(); i++) {

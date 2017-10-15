@@ -181,6 +181,7 @@ public class Sprite {
 	}
 	
 	private void loadSprite() {
+
 		for (int y = 0; y < widthSprite; y++) {
 			for (int x =0; x < widthSprite; x++) {
 				pixelsSprite[x + y * widthSprite] = spriteSheet.pixelsSpriteSheet[(x + this.x) + (y + this.y) * spriteSheet.WIDTH_SPRITE];

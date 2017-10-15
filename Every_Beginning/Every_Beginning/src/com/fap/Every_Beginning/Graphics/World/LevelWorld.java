@@ -21,6 +21,8 @@ public class LevelWorld extends Level {
             int w = widthLevel = frameInScreens.getWidth();
 			int h = heightLevel = frameInScreens.getHeight();;
 			levelTiles = new int[widthLevel * heightLevel];
+	           System.out.println(widthLevel);
+
 			frameInScreens.getRGB(0, 0, w, h, levelTiles, 0, widthLevel);
 
 		} catch (IOException e) { 

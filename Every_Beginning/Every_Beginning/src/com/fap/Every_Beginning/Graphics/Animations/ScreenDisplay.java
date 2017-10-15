@@ -11,8 +11,8 @@ public class ScreenDisplay {
     public int[] pixelsScreen;
     public int widthTile = 64;
     public int heightTile = 64;
-//    public int LargeurNiveau = 8;
-//    public int HauteurNiveau = 8;
+    public int largeurNiveau = 8;
+    public int hauteurNiveau = 8;
 //    public int QuantiteTuilesNiveau = LargeurNiveau * HauteurNiveau;
 //    public int PlageWidthTile = LargeurNiveau - 1;
 //   public int PlageHeightTile = HauteurNiveau - 1;
@@ -21,8 +21,8 @@ public class ScreenDisplay {
     private final int ALPHA_COULEUR1 = 0xFFFF00FF;
     private final int ALPHA_COULEUR2 = 0xff7f007f;
 
-    //public int[] Tuiles = new int[LargeurNiveau * HauteurNiveau];
-    //private Random Aleatoire = new Random();
+    public int[] tiles = new int[largeurNiveau * hauteurNiveau];
+    private Random randomRoll = new Random();
 
     public ScreenDisplay(int widthScreen, int heightScreen) {
         this.widthScreen = widthScreen;
@@ -31,9 +31,9 @@ public class ScreenDisplay {
         pixelsScreen = new int[widthScreen * heightScreen];
 
 
-   /*     for (int i = 0; i < QuantiteTuilesNiveau; i++) {
-            Tuiles[i] = Aleatoire.nextInt(0xffffff);
-        }*/
+        for (int i = 0; i < pixelsScreen.length ; i++) {
+            tiles[i] = randomRoll.nextInt(0xffffff);
+        }
     }
 
     public void clear() {
@@ -89,8 +89,8 @@ public class ScreenDisplay {
 
         for (int y = 0; y < sprite.getHeightSprite(); y++) {
            int yAbsolu = y + yPosition;
+           int xAbsolu = x + xPosition;
             for (int x = 0; x < sprite.getWidthSprite(); x++) {
-                int xAbsolu = x + xPosition;
                if (xAbsolu < 0 || xAbsolu >=  widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen) continue;
                 int color =  sprite.pixelsSprite[x + y * sprite.getWidthSprite()];
                 if (color  != ALPHA_COULEUR1 && color  != ALPHA_COULEUR2) {
@@ -106,10 +106,10 @@ public class ScreenDisplay {
 
        for (int y = 0; y < tile.sprite.heightSprite; y++) {
             int yAbsolu = y + yPosition;
-
             for (int x = 0; x < tile.sprite.widthSprite; x++) {
-                int xAbsolu = x + xPosition;
-                if (xAbsolu < - 64 || xAbsolu >= widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen) break;
+               
+            	int xAbsolu = x + xPosition;
+                if (xAbsolu < - 16 || xAbsolu >= widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen) break;
                 if (xAbsolu < 0) xAbsolu = 0;
 
                 pixelsScreen[xAbsolu + yAbsolu * widthScreen] = tile.sprite.pixelsSprite[x + y * tile.sprite.widthSprite];

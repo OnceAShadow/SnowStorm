@@ -13,7 +13,7 @@ public class TileGrass extends Tile {
 	
 	public void renderTile(int x, int y, ScreenDisplay screen) {
 
-		screen.renderTile(x / 64, y / 64, this);
+		screen.renderTile(x, y, this);
 	}
 
 	public boolean solid() {
