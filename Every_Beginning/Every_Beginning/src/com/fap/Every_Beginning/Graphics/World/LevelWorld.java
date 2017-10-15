@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class LevelWorld extends Level{
+public class LevelWorld extends Level {
 
 	public LevelWorld(String path) {
 		super(path);		
@@ -22,7 +22,7 @@ public class LevelWorld extends Level{
 			int H = heightLevel = frameInScreens.getHeight();;
 			levelTiles = new int[widthLevel * heightLevel];
 			frameInScreens.getRGB(0, 0, L, H, levelTiles, 0, widthLevel);
-		} catch (IOException e) { 
+		} catch (IOException e) {
 			System.out.println("penis");
 		}
 		

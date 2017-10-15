@@ -22,8 +22,7 @@ public class Level {
 	
 	public int xStatingPosition = 32;
 	public int yStartingPosition = 32;
-	public static Level castle = new LevelWorld("/Level/LevelStart.png");
-	
+
 	private List<Entite> entities = new ArrayList<Entite>();
 	/*
 	//private List<Projectile> Projectiles = new ArrayList<Projectile>();
@@ -59,6 +58,7 @@ public class Level {
 
 
 	protected void loadLevel(String path) {
+
 	}
 	
 	protected void generateLevel() {

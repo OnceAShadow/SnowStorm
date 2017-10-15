@@ -31,19 +31,6 @@ public class Game extends Canvas implements Runnable {
 	private BufferedImage imageInFrame = new BufferedImage(widthFrame, heightFrame, BufferedImage.TYPE_INT_RGB);
 	private int[] pixelsInFrame = ((DataBufferInt) imageInFrame.getRaster().getDataBuffer()).getData();
 
-	public Game () {
-		Dimension FrameResolution = new Dimension(widthFrame, heightFrame);
-		setPreferredSize(FrameResolution);
-		
-		
-		screen = new ScreenDisplay(widthResolution, heightResolution);
-		frame = new JFrame();
-		frame.setResizable(false);
-		
-		level = level.castle;
-		
-	}
-	
 	public static void main(String[] args) {
 		Game game = new Game();
 		game.frame.setTitle(game.title);
@@ -55,11 +42,22 @@ public class Game extends Canvas implements Runnable {
 
 		game.start();
 	}
-	
+
+	public Game () {
+		Dimension FrameResolution = new Dimension(widthFrame, heightFrame);
+		setPreferredSize(FrameResolution);
+		
+		
+		screen = new ScreenDisplay(widthResolution, heightResolution);
+		frame = new JFrame();
+		frame.setResizable(false);
+		
+		level = Keeper.createWordl("");
+	}
+
 	public synchronized void start() {
 		running = true;
 		thread = new Thread(this, "Display");
-		thread.start();
 	}
 	
 	public void run() {
