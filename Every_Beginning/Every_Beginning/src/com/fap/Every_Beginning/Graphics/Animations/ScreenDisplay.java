@@ -7,7 +7,8 @@ import com.fap.Every_Beginning.Graphics.World.Tiles.Tile;
 
 public class ScreenDisplay {
 
-    public int widthScreen, heightScreen;
+    public int width;
+    public int height;
     public int xOffset, yOffset;
     public int[] pixelsScreen;
     public int widthTile = 64;
@@ -26,8 +27,8 @@ public class ScreenDisplay {
   //  private Random randomRoll = new Random();
 
     public ScreenDisplay(int widthScreen, int heightScreen) {
-        this.widthScreen = widthScreen;
-        this.heightScreen = heightScreen;
+        this.width = widthScreen;
+        this.height = heightScreen;
 
         pixelsScreen = new int[widthScreen * heightScreen];
 
@@ -57,9 +58,9 @@ public class ScreenDisplay {
             int yAbsolu = y + yPosition;
             for (int x = 0; x < spriteSheet.WIDTH_SPRITE; x++) {
                 int xAbsolu = x + xPosition;
-                if (xAbsolu < 0 || xAbsolu >=  widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen);
-                pixelsScreen[xAbsolu + yAbsolu * widthScreen] = spriteSheet.pixelsSpriteSheet[x + y * spriteSheet.WIDTH_SPRITE];
-                System.out.println(widthScreen);
+                if (xAbsolu < 0 || xAbsolu >=  width || yAbsolu < 0 || yAbsolu >= height);
+                pixelsScreen[xAbsolu + yAbsolu * width] = spriteSheet.pixelsSpriteSheet[x + y * spriteSheet.WIDTH_SPRITE];
+                System.out.println(height);
             }
         }
     }
@@ -93,10 +94,10 @@ public class ScreenDisplay {
            int yAbsolu = y + yPosition;
             for (int x = 0; x < sprite.getWidthSprite(); x++) {
             	int xAbsolu = x + xPosition;
-               if (xAbsolu < 0 || xAbsolu >=  widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen) continue;
+               if (xAbsolu < 0 || xAbsolu >=  width || yAbsolu < 0 || yAbsolu >= height) continue;
                 int color =  sprite.pixelsSprite[x + y * sprite.getWidthSprite()];
                 if (color  != ALPHA_COULEUR1 && color  != ALPHA_COULEUR2) {
-                	pixelsScreen[xAbsolu + yAbsolu * widthScreen] = color;
+                	pixelsScreen[xAbsolu + yAbsolu * width] = color;
                 }
                 
             }
@@ -120,10 +121,10 @@ public class ScreenDisplay {
             	
 
             	int xAbsolu = x + xPosition;
-                if (xAbsolu < - 64 || xAbsolu >= widthScreen || yAbsolu < 0 || yAbsolu >= heightScreen) break;
+                if (xAbsolu < - 64 || xAbsolu >= width || yAbsolu < 0 || yAbsolu >= height) break;
                 if (xAbsolu < 0) xAbsolu = 0;
 
-                pixelsScreen[xAbsolu + yAbsolu * widthScreen] = tile.sprite.pixelsSprite[x + y * tile.sprite.widthSprite];
+                pixelsScreen[xAbsolu + yAbsolu * width] = tile.sprite.pixelsSprite[x + y * tile.sprite.widthSprite];
                
              //   System.out.println(tile);
              //   System.out.println(tile.sprite);
@@ -224,18 +225,18 @@ public class ScreenDisplay {
         }
 
         for (int x = xPosition; x < xPosition + widthDebug; x++) {
-            if (x >= this.widthScreen || x < 0 || yPosition >= this.heightScreen) continue;
-            if (yPosition > 0) pixelsScreen[x + yPosition * this.widthScreen] = color;
-            if (yPosition + heightDebug >= this.heightScreen) continue;
-            if (yPosition + heightDebug > 0) pixelsScreen[x + (yPosition + heightDebug) * this.widthScreen] = color;
+            if (x >= this.width || x < 0 || yPosition >= this.height) continue;
+            if (yPosition > 0) pixelsScreen[x + yPosition * this.width] = color;
+            if (yPosition + heightDebug >= this.height) continue;
+            if (yPosition + heightDebug > 0) pixelsScreen[x + (yPosition + heightDebug) * this.width] = color;
 
         }
 
         for (int y = yPosition; y <= yPosition + heightDebug; y++) {
-            if (xPosition >= this.widthScreen || y < 0 || y >= this.heightScreen) continue;
-            if (xPosition > 0) pixelsScreen[xPosition + y * this.widthScreen] = color;
-            if (xPosition + widthDebug >= this.widthScreen) continue;
-            if (xPosition + widthDebug > 0) pixelsScreen[(xPosition + widthDebug) + y * this.widthScreen] = color;
+            if (xPosition >= this.width || y < 0 || y >= this.height) continue;
+            if (xPosition > 0) pixelsScreen[xPosition + y * this.width] = color;
+            if (xPosition + widthDebug >= this.width) continue;
+            if (xPosition + widthDebug > 0) pixelsScreen[(xPosition + widthDebug) + y * this.width] = color;
 
         }
     }

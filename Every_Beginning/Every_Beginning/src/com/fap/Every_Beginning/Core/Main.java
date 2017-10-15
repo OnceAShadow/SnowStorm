@@ -2,7 +2,7 @@ package com.fap.Every_Beginning.Core;
 
 import javax.swing.JFrame;
 
-public class Game {
+public class Main {
 
     public static void main(String[] args) {
 

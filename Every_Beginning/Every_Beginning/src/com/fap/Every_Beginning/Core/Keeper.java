@@ -1,6 +1,9 @@
 package com.fap.Every_Beginning.Core;
 
+import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
 import com.fap.Every_Beginning.Graphics.World.GameWorld;
+
+import javax.swing.*;
 
 public class Keeper {
 
@@ -11,10 +14,10 @@ public class Keeper {
     private static int tps = 0;
     private static int totalTicks = 0;
     private static String gameWorldPath = "";
-    private static DrawSlave drawSlave = new DrawSlave();
+    private static DrawSlave drawSlave;
 
-    public static GameWorld createWorld(String path, GameOn game) {
-        drawSlave.game = game;
+    public static GameWorld createWorld(String path, GameOn game, JFrame frame, ScreenDisplay screen) {
+        drawSlave = new DrawSlave(game, frame, screen);
         gameWorldPath = path;
         gameWorld = new GameWorld(gameWorldPath);
 

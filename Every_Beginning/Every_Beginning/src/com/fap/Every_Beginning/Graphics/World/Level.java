@@ -357,9 +357,9 @@ public class Level {
 		screen.setOffset(xDecallage, yDecallage);
 		
 		int x0 = (xDecallage - screen.widthTile) / screen.widthTile;
-		int x1 = (xDecallage + screen.widthScreen + screen.widthTile) / 64 ;
+		int x1 = (xDecallage + screen.width + screen.widthTile) / 64 ;
 		int y0 = (yDecallage - screen.heightTile) / screen.heightTile;
-		int y1 = (yDecallage + screen.heightScreen + screen.heightTile) / 64 ;
+		int y1 = (yDecallage + screen.height + screen.heightTile) / 64 ;
 		
 		int loopcount = 0;
 		for (int y = y0; y < y1; y++) {

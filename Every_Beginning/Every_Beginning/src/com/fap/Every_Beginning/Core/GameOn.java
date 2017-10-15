@@ -13,28 +13,21 @@ import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
 
 public class GameOn extends Canvas implements Runnable {
 
-    private static int widthResolution = 800;
-    private static int heightResolution = 600;
-    private static int widthFrame = widthResolution;
-    private static int heightFrame = heightResolution;
+    private static int screenWidth = 800;
+    private static int screenHeight = 600;
 
     protected JFrame frame;
     private Thread thread;
     private ScreenDisplay screen;
     private boolean running;
 
-    private BufferedImage imageInFrame = new BufferedImage(widthFrame, heightFrame, BufferedImage.TYPE_INT_RGB);
-    private int[] pixelsInFrame = ((DataBufferInt) imageInFrame.getRaster().getDataBuffer()).getData();
-
     public GameOn () {
-        Dimension frameResolution = new Dimension(widthFrame, heightFrame);
-        setPreferredSize(frameResolution);
-
-        screen = new ScreenDisplay(widthResolution, heightResolution);
+        setPreferredSize(new Dimension(screenWidth, screenHeight));
+        screen = new ScreenDisplay(screenWidth, screenHeight);
         frame = new JFrame();
         frame.setResizable(false);
 
-        Keeper.createWorld("/LevelStart.png", this);
+        Keeper.createWorld("/LevelStart.png", this, frame, screen);
     }
 
     public synchronized void startGame() {
@@ -65,30 +58,5 @@ public class GameOn extends Canvas implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public void renderOnScreen() {
-        BufferStrategy BufferStrategy = getBufferStrategy();
-        if (BufferStrategy == null) {
-            createBufferStrategy(3);
-            return;
-        }
-        screen.clear();
-
-
-        level.renderLevel(-100, -100, screen);
-
-
-        for (int i = 0; i < pixelsInFrame.length; i++) {
-            pixelsInFrame[i] = screen.pixelsScreen[i];
-        }
-
-        Graphics graphics = BufferStrategy.getDrawGraphics();
-        graphics.setColor(new Color(0xFF00FF));
-        graphics.fillRect(0, 0, widthFrame, heightFrame);
-
-        graphics.drawImage(imageInFrame, 0, 0, widthFrame, heightFrame, null);
-        graphics.dispose();
-        BufferStrategy.show();
     }
 }
