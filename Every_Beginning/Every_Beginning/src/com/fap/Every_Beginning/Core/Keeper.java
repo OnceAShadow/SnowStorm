@@ -6,6 +6,6 @@ import com.fap.Every_Beginning.Graphics.World.LevelWorld;
 public class Keeper {
 
     public static Level createWordl(String path) {
-        return(new LevelWorld("/Level/LevelStart.png"));
+        return(new LevelWorld(path));
     }
 }

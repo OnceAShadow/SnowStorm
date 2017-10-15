@@ -49,12 +49,11 @@ public class Game extends Canvas implements Runnable {
 		Dimension FrameResolution = new Dimension(widthFrame, heightFrame);
 		setPreferredSize(FrameResolution);
 		
-		
 		screen = new ScreenDisplay(widthResolution, heightResolution);
 		frame = new JFrame();
 		frame.setResizable(false);
 		
-		level = Keeper.createWordl("");
+		level = Keeper.createWordl("/LevelStart.png");
 	}
 
 	public synchronized void start() {
