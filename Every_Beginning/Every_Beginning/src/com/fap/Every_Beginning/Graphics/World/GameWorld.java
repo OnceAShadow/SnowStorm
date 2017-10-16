@@ -1,6 +1,9 @@
 package com.fap.Every_Beginning.Graphics.World;
 
 import javax.imageio.ImageIO;
+
+import com.fap.Every_Beginning.Graphics.World.Tiles.Tile;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -8,7 +11,7 @@ public class GameWorld {
 
     private int widthLevel;
     private int heightLevel;
-    private int[] levelTiles;
+    private Tile[] levelTiles;
 
     public GameWorld(String path) {
         loadLevel(path);
@@ -20,8 +23,11 @@ public class GameWorld {
             BufferedImage worldTiles = ImageIO.read(LevelWorld.class.getResource(path));
             widthLevel = worldTiles.getWidth();
             heightLevel = worldTiles.getHeight();
-            levelTiles = new int[widthLevel * heightLevel];
-            worldTiles.getRGB(0, 0, widthLevel, heightLevel, levelTiles, 0, widthLevel);
+            levelTiles = new Tile[widthLevel * heightLevel];
+
+            for (int i = 0; i < levelTiles.length; i++) {
+            	levelTiles[i].phySpec = 2;
+            }
         } catch (IOException e) {
         }
     }
