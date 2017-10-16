@@ -1,7 +1,9 @@
 package com.fap.Every_Beginning.Core;
 
 import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
+import com.fap.Every_Beginning.Graphics.Animations.Sprite;
 import com.fap.Every_Beginning.Graphics.World.GameWorld;
+import com.fap.Every_Beginning.Graphics.World.Tiles.Tile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +20,8 @@ public class DrawSlave {
 
     private BufferedImage imageInFrame;
     private int[] pixelsInFrame;
+
+
 
     public DrawSlave(GameOn game, JFrame frame, ScreenDisplay screen, GameWorld gameWorld) {
         this.game = game;
