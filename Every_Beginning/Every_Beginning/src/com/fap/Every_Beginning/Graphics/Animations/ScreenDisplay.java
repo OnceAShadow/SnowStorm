@@ -60,7 +60,7 @@ public class ScreenDisplay {
                 int xAbsolu = x + xPosition;
                 if (xAbsolu < 0 || xAbsolu >=  width || yAbsolu < 0 || yAbsolu >= height);
                 pixelsScreen[xAbsolu + yAbsolu * width] = spriteSheet.pixelsSpriteSheet[x + y * spriteSheet.WIDTH_SPRITE];
-                System.out.println(height);
+              //  System.out.println(height);
             }
         }
     }
@@ -140,9 +140,9 @@ public class ScreenDisplay {
             }
         }
        if (yCount == 64) {
-           System.out.print("P" + " ");	   
+   //        System.out.print("P" + " ");	   
        } else {
-           System.out.print("F! ");
+    //       System.out.print("F! ");
        }
 
    }

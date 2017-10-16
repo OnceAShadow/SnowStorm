@@ -46,6 +46,8 @@ public class DrawSlave {
         int widthLevel = Keeper.gameWorld.getWidthLevel();
         int HeightLevel = Keeper.gameWorld.getHeightLevel();
         int[] pixelsLevel = new int[widthLevel * HeightLevel * 64 * 64];
+        int loopCount = 0;
+       
         for (int y = 0; y < HeightLevel; y++) {
     		for (int x = 0; x < widthLevel; x++) {
     		//System.out.println("x : " + x);
@@ -55,51 +57,30 @@ public class DrawSlave {
     				Sprite temp = Keeper.gameWorld.getTile()[x + y * widthLevel].sprite;
     				int widhtSprite = Keeper.gameWorld.getTile()[x + y * widthLevel].sprite.widthSprite;
     				
-    				pixelsLevel[((x + (y * widthLevel)) * (xx + yy * widhtSprite))] = temp.pixelsSprite[xx + yy * widhtSprite];
-    				System.out.println("position pixel:  " + ((x + (y * widthLevel)) * (xx + yy * widhtSprite)));
-    				System.out.println("couleur pixel :  " + pixelsLevel[((x + (y * widthLevel)) * (xx + yy * widhtSprite))]);
+    				loopCount++;
+    				pixelsLevel[loopCount] = temp.pixelsSprite[xx + (yy * widhtSprite)];
+    				
+    			//	System.out.println("position pixel dans level :  " + (xx + (yy * widhtSprite) * widthLevel));
+    			//	System.out.println("valeur pixel dans level :  " + pixelsLevel[((xx + (yy * widhtSprite) * widthLevel))]);
+    				
+    			//	System.out.println("position pixel dans tuile :  " + (xx + (yy * widhtSprite)));
+    			//	System.out.println("valeur pixel dans tuile :  " + temp.pixelsSprite[xx + yy * widhtSprite]);
     				//pixelsInFrame[] = Keeper.gameWorld.getTile()[x + y * widthLevel].sprite.pixelsSprite[xx + yy * Keeper.gameWorld.getTile()[x + y * widthLevel].sprite.widthSprite];
     			}
     		}
     		//System.out.println("y : " + y);
      	}
-        for (int i = 0; i < pixelsInFrame.length; i++) {
+    //	System.out.println(loopCount);
+    	loopCount = 0;
+       
+    	for (int i = 0; i < pixelsInFrame.length; i++) {
             pixelsInFrame[i] = pixelsLevel[i];
         }
 
         graphics.drawImage(imageInFrame, 0, 0, screen.width, screen.height, null);
     	graphics.dispose();
     	BufferStrategy.show();
-//        //level.renderLevel(-100, -100, screen);
-//
-//
-//        Graphics graphics = BufferStrategy.getDrawGraphics();
-//        graphics.setColor(new Color(0xFF00FF));
-//        graphics.fillRect(0, 0, screen.width, screen.height);
-//
-//        graphics.dispose();
-//        BufferStrategy.show();
-    	
-    	
-    	
-    	/*
-    	boucle world
-    	
-    	for 
-    	
-    	boucle tuile
-    	boucle pixel
-    	
-    	
-    	
-    	
-    	*/
-    	
-    	
-    	
-    	
-    	
-    	
+
     }
 }
 }
