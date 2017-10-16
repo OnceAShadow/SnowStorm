@@ -3,7 +3,7 @@ package com.fap.Every_Beginning.Core;
 import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
 import com.fap.Every_Beginning.Graphics.Animations.Sprite;
 import com.fap.Every_Beginning.Graphics.World.GameWorld;
-import com.fap.Every_Beginning.Graphics.World.Tiles.Tile;
+import com.fap.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,8 +20,6 @@ public class DrawSlave {
 
     private BufferedImage imageInFrame;
     private int[] pixelsInFrame;
-
-
 
     public DrawSlave(GameOn game, JFrame frame, ScreenDisplay screen, GameWorld gameWorld) {
         this.game = game;
@@ -44,29 +42,41 @@ public class DrawSlave {
         Graphics graphics = BufferStrategy.getDrawGraphics();
 
         graphics.drawLine(100,100, 100, 200);
-        graphics.dispose();
-        BufferStrategy.show();
 
-
-
-    	for (int y = 0; y < Keeper.gameWorld.getHeightLevel(); y++) {
-    		for (int x = 0; x < Keeper.gameWorld.getWidthLevel(); x++) {
-    		System.out.println("x : " + x);
+        int widthLevel = Keeper.gameWorld.getWidthLevel();
+        int HeightLevel = Keeper.gameWorld.getHeightLevel();
+        int[] pixelsLevel = new int[widthLevel * HeightLevel * 64 * 64];
+        for (int y = 0; y < HeightLevel; y++) {
+    		for (int x = 0; x < widthLevel; x++) {
+    		//System.out.println("x : " + x);
+    		for (int yy = 0; yy < Keeper.gameWorld.getTile()[x + y * widthLevel].sprite.heightSprite; yy++) {
+    			for (int xx = 0; xx < Keeper.gameWorld.getTile()[x + y * widthLevel].sprite.widthSprite; xx++) {
+    			//	System.out.println("position pixels :  " + xx + (yy * screen.width));
+    				Sprite temp = Keeper.gameWorld.getTile()[x + y * widthLevel].sprite;
+    				int widhtSprite = Keeper.gameWorld.getTile()[x + y * widthLevel].sprite.widthSprite;
+    				
+    				pixelsLevel[((x + (y * widthLevel)) * (xx + yy * widhtSprite))] = temp.pixelsSprite[xx + yy * widhtSprite];
+    				System.out.println("position pixel:  " + ((x + (y * widthLevel)) * (xx + yy * widhtSprite)));
+    				System.out.println("couleur pixel :  " + pixelsLevel[((x + (y * widthLevel)) * (xx + yy * widhtSprite))]);
+    				//pixelsInFrame[] = Keeper.gameWorld.getTile()[x + y * widthLevel].sprite.pixelsSprite[xx + yy * Keeper.gameWorld.getTile()[x + y * widthLevel].sprite.widthSprite];
+    			}
     		}
-    		System.out.println("y : " + y);
+    		//System.out.println("y : " + y);
      	}
+        for (int i = 0; i < pixelsInFrame.length; i++) {
+            pixelsInFrame[i] = pixelsLevel[i];
+        }
 
+        graphics.drawImage(imageInFrame, 0, 0, screen.width, screen.height, null);
+    	graphics.dispose();
+    	BufferStrategy.show();
 //        //level.renderLevel(-100, -100, screen);
 //
-//        for (int i = 0; i < pixelsInFrame.length; i++) {
-//            pixelsInFrame[i] = screen.pixelsScreen[i];
-//        }
 //
 //        Graphics graphics = BufferStrategy.getDrawGraphics();
 //        graphics.setColor(new Color(0xFF00FF));
 //        graphics.fillRect(0, 0, screen.width, screen.height);
 //
-//        graphics.drawImage(imageInFrame, 0, 0, screen.width, screen.height, null);
 //        graphics.dispose();
 //        BufferStrategy.show();
     	
@@ -91,4 +101,5 @@ public class DrawSlave {
     	
     	
     }
+}
 }

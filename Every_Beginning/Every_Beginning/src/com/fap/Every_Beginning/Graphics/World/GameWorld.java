@@ -27,12 +27,13 @@ public class GameWorld {
             BufferedImage worldTiles = ImageIO.read(LevelWorld.class.getResource(path));
             widthLevel = worldTiles.getWidth();
             heightLevel = worldTiles.getHeight();
-            levelTiles = new Tile[widthLevel * heightLevel];
-        	System.out.println(levelTiles.length);
+            int totalTiles = widthLevel * heightLevel;
+            levelTiles = new Tile[totalTiles];
+        	System.out.println(totalTiles);
 
-            for (int i = 0; i < levelTiles.length; i++) {
-                levelTiles[i].sprite = Sprite.spriteG;
-            	levelTiles[i].phySpec = 2;
+            for (int i = 0; i < totalTiles; i++) {
+                Tile temp = new Tile(Sprite.spriteR);
+            	levelTiles[i] = temp;
             }
         } catch (IOException e) {
         }

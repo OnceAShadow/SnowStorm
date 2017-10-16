@@ -13,8 +13,8 @@ import com.fap.Every_Beginning.Graphics.Animations.ScreenDisplay;
 
 public class GameOn extends Canvas implements Runnable {
 
-    private static int screenWidth = 800;
-    private static int screenHeight = 600;
+    private int screenWidth = 800;
+    private int screenHeight = 600;
 
     protected JFrame frame;
     private Thread thread;

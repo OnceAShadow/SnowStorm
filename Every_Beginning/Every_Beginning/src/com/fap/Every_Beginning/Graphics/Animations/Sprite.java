@@ -11,8 +11,8 @@ public class Sprite {
 	
 	// SpritesMateriel
 	public static Sprite spriteVoid = new Sprite(64, 64, 0x5D3F97);
-	public static Sprite spriteG = new Sprite(64, 64, 0x5D3F97);
-	public static Sprite spriteR = new Sprite(64, 64, 0x5D3F97);
+	public static Sprite spriteG = new Sprite(64, 64, 0xff00ff);
+	public static Sprite spriteR = new Sprite(64, 64, 0xf50505);
 	
 	
 	public static Sprite spriteGrass = new Sprite(64, 64, 0, 0, SpriteSheet.tiles_Base);
