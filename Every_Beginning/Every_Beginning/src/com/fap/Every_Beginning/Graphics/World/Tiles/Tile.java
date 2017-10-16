@@ -15,4 +15,8 @@ public class Tile {
     public Tile(Sprite sprite) {
         this.sprite = sprite;
     }
+    
+    public int getPhySpec() {
+    	return phySpec;
+    }
 }

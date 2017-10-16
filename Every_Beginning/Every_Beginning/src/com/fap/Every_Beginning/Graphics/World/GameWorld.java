@@ -28,6 +28,7 @@ public class GameWorld {
             widthLevel = worldTiles.getWidth();
             heightLevel = worldTiles.getHeight();
             levelTiles = new Tile[widthLevel * heightLevel];
+        	System.out.println(levelTiles.length);
 
             for (int i = 0; i < levelTiles.length; i++) {
                 levelTiles[i].sprite = Sprite.spriteG;
@@ -43,5 +44,9 @@ public class GameWorld {
     
     public int getHeightLevel() {
     	return heightLevel;
+    }
+    
+    public Tile[] getTile() {
+    	return levelTiles;
     }
 }
